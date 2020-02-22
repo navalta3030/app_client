@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, Link } from "react-router-dom";
 import {
   Navbar,
   NavbarBrand,
@@ -35,10 +35,12 @@ const Home = (props) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/home") {
         return (
-          <NavItem>
-            <NavLink href={prop.layout + prop.path}>{prop.name}</NavLink>
-          </NavItem>
-        )
+            <NavItem>
+                <NavLink>
+                    <Link to={prop.layout + prop.path}>{prop.name}</Link>
+                </NavLink>
+            </NavItem>
+        );
       } else {
         return null;
       }
