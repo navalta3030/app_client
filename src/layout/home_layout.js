@@ -7,8 +7,6 @@ import {
   NavItem,
   NavLink,
   NavbarText,
-  Jumbotron,
-  Container
 } from 'reactstrap';
 
 import routes from "routes.js";
@@ -58,14 +56,10 @@ const Home = (props) => {
       </div>
 
       <div className="main-content">
-        <Container>
-          <Jumbotron>
-            <Switch>
-              {getRoutes(routes)}
-              <Redirect from="*" to="/home" />
-            </Switch>
-          </Jumbotron>
-        </Container>
+        <Switch>
+          {getRoutes(routes)}
+          <Redirect from="*" to="/home" />
+        </Switch>
       </div>
 
     </>
