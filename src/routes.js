@@ -1,5 +1,5 @@
-import HomeIndex from "views/home/vh_index.js"
-import Test from "views/home/vh_test.js"
+import HomeIndex from "views/home/vh_index"
+import Test from "views/home/vh_test"
 let routes = [
   {
     layout: "/home",

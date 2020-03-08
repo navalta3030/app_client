@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import Banner from '../../component/top_banner'
 
 export default class index extends Component {
   render() {
     return (
       <div>
-        hello from test
+        <Banner title="index"></Banner>
       </div>
     )
   }

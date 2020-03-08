@@ -5,8 +5,8 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 
-import { Reducer } from "./reducers";
-import HomeLayout from 'layout/home_layout.js';
+import { Reducer } from "reducers/reducer.js";
+import HomeLayout from 'layout/home_layout';
 
 import * as serviceWorker from 'serviceWorker.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,12 +20,12 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <Provider store={Provider}>
+  <Provider store={store}>
     <BrowserRouter>
       <Switch>
         <Route path="/home" render={props => <HomeLayout {...props} />} />
 
-        <Redirect from="/" to="/home" />
+        <Redirect from="/" to="/home/index" />
       </Switch>
     </BrowserRouter>
   </Provider>,
