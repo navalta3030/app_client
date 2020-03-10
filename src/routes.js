@@ -1,5 +1,6 @@
 import HomeIndex from "views/home/vh_index"
 import Test from "views/home/vh_test"
+import HighChart from "views/home/vh_highchart"
 let routes = [
   {
     layout: "/home",
@@ -12,6 +13,12 @@ let routes = [
     path: "/test",
     name: "Test",
     view: Test
+  },
+  {
+    layout: "/home",
+    path: "/highchart",
+    name: "HighChart",
+    view: HighChart
   }
 ];
 
