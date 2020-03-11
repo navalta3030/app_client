@@ -40,7 +40,7 @@ export default class highchart extends Component {
 
     linechart_data = {
         title  : "Line Chart",
-        x : {
+        x : { 
             label : ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug","Sept", "Oct", "November", "December"],
             title: "Dates",
         },
