@@ -3,70 +3,75 @@ import BarChart from '../../component/bar_chart'
 import LineChart from '../../component/line_chart'
 
 export default class highchart extends Component {
-    json_input = {
+
+    barChart_data = {
         title: {
             text: 'High Chart'
         },
-        json_data: [
-            {
-                name: 'Series F',
-                y: 10
-            },
-            {
-                name: 'Series B',
-                y: 3.5
-            },
-            {
-                name: 'Series C',
-                y: 5.5
-            },
-            {
-                name: 'Series D',
-                y: 7.5
-            },
-            {
-                name: 'Series E',
-                y: 9.5
-            },
-            {
-                name: 'Series A',
-                y: 2
-            }, 
-            {
-                name: 'Series H',
-                y: 13.5
-            },
-            {
-                name: 'Series G',
-                y: 12
-            },
-            {
-                name: 'Series J',
-                y: 19.5
-            },
-            {
-                name: 'Series I',
-                y: 15
-            }
-        ],
-        // ### ARRAY Based Input ###
-        xAxis: {
-            title: {
-                text: 'Description X'
-            },
+        vertical: false,
+        x: {
+            data: ["Series A", "Series B", "Series C","Series D", "Series E", "Series F", "Series G","Series H", "Series I", "Series J", "Series K","Series L"],
+            label: "Series labels"
         },
-        arr_data1: [8, 5, 2.5, 3.25, 7.75, 10, 12, 18.25, 15.5],
-        arr_data2: [2, 4, 1.25, 2, 6.75, 14.25, 20.4, 3, 19.5, 24]
+        y: {
+            data: [{
+                name: 'Tokyo',
+                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+        
+            }, {
+                name: 'New York',
+                data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+        
+            }, {
+                name: 'London',
+                data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+        
+            }, {
+                name: 'Berlin',
+                data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+        
+            }],
+
+            label: "Earnings $$$",
+            limit: 300
+        }
+    }
+    
+
+    linechart_data = {
+        title  : "Line Chart",
+        x : {
+            label : ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug","Sept", "Oct", "November", "December"],
+            title: "Dates",
+        },
+        y : {
+            data : [
+                {
+                    data_name : "Time Series first",
+                    data : [2, 4, 1.25, 2, 6.75, 14.25, 20.4, 3, 19.5, 24]
+                },
+                {
+                    data_name : "Time Series second",
+                    data : [8, 5, 2.5, 3.25, 7.75, 10, 12, 18.25, 15.5]
+                },
+                {
+                    data_name : "Time Series third",
+                    data : [0, 8, 5, 2.5, 3.25, 7.75, 10, 12, 18.25, 15.5]
+                }
+            ],
+            limit : 30,
+            title : "Dummy Y label",
+        }       
     }
 
     render() {
         return (
             <div>
                 <BarChart 
-                    data={this.json_input}
+                    data={this.barChart_data}
                 />
                 <LineChart 
-                    data={this.json_input}
+                    data={this.linechart_data}
                 />
             </div>
         )
