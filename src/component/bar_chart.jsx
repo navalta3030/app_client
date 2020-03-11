@@ -15,7 +15,7 @@ export default function BarChart(props) {
         },
         yAxis: {
             title: {
-                text: props.data.y.label
+                text: props.data.y.title
             },
             min: 0,
             max: props.data.y.limit,

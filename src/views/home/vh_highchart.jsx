@@ -11,7 +11,7 @@ export default class highchart extends Component {
         vertical: false,
         x: {
             data: ["Series A", "Series B", "Series C","Series D", "Series E", "Series F", "Series G","Series H", "Series I", "Series J", "Series K","Series L"],
-            label: "Series labels"
+            title: "Series labels"
         },
         y: {
             data: [{
@@ -32,7 +32,7 @@ export default class highchart extends Component {
         
             }],
 
-            label: "Earnings $$$",
+            title: "Earnings $$$",
             limit: 300
         }
     }
@@ -40,7 +40,7 @@ export default class highchart extends Component {
 
     linechart_data = {
         title  : "Line Chart",
-        x : {
+        x : { 
             label : ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug","Sept", "Oct", "November", "December"],
             title: "Dates",
         },
