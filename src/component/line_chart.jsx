@@ -3,44 +3,46 @@ import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
 export default function LineChart(props) {
-    // console.log(props.data.title)
+
     const options = {
         chart: {
-            type: 'line', // Update if neccessary
+            type: 'spline', 
         },
-        title: {text: 'Line Chart'} || props.data.title,
-        xAxis: props.data.xAxis,
+        title: { text: props.data.title && "Line Chart"},
+        xAxis: {
+            title: {
+                text: props.data.x.title
+            },
+            categories : props.data.x.label,
+            max: props.data.x.label.length - 1
+        },
         yAxis: {
             title: {
-                text: 'Description Y'
+                text: props.data.y.title
             },
             min: 0,
-            max: 30,
+            max: props.data.y.limit || 30,
             reversed: false
         },
-        series: [
-            {
-                name: 'Test Series 1',
+        tooltip: {
+            crosshairs: true,
+            shared: true
+        },
+        series: props.data.y.data.map( data_object => {
+            return {
+                name: data_object.data_name,
                 dataLabels: {
-                    enabled: true,
+                    enabled: false,
                     format: '{y:,.2f}'
                 },
-                data: props.data.arr_data1
-            },
-            {
-                name: 'Test Series 2',
-                dataLabels: {
-                    enabled: true,
-                    format: '{y:,.2f}'
-                },
-                data: props.data.arr_data2
+                data: data_object.data
             }
-        ],
+        }),
         legend: {
             enabled: true
         },
     }
-  
+  console.log(options)
   return (
     <div>
         <HighchartsReact
