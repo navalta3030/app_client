@@ -1,3 +1,14 @@
+## Enviroment Setup with VSCode
+
+- Linting
+  - Download the following Extension
+    - Eslint
+    - Prettier
+  - Shift + Alt + P
+    - Format Document with
+    - Configure prettier as default formatter
+- It will fix the format on autosave.
+
 ## Instructions
 
 - Adding more navigation goes along with views.
@@ -8,7 +19,6 @@
       - path : After the home layout, this is the route.
       - name : this is the nav link
       - views : which view teamplate should it generate?
-
 
 ## Docker documentation
 
