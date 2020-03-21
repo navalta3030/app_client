@@ -1,3 +1,3 @@
-export default interface topBannerInterface {
+export default interface TopBannerInterface {
   title: string;
 }

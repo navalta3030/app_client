@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -22,7 +23,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route path="/home" render={props => <HomeLayout {...props} />} />
+        <Route path="/home" render={HomeLayout} />
         <Redirect from="/" to="/home/index" />
       </Switch>
     </BrowserRouter>
