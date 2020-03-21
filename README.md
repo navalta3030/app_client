@@ -4,6 +4,9 @@
   - Download the following Extension
     - Eslint
     - Prettier
+  - Shift + Alt + P
+    - Format Document with
+    - Configure prettier as default formatter
 - It will fix the format on autosave.
 
 ## Instructions
