@@ -4,6 +4,7 @@ import HighchartsReact from "highcharts-react-official";
 import BarChartInterface from "interface/barchart";
 
 export default function BarChart(props: BarChartInterface) {
+
     const options = {
         chart: {
             type: "column"
