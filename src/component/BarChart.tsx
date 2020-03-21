@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import BarChartInterface from "interface/barchart";
+import BarChartInterface from "interface/BarChartsInterface";
 
 export default function BarChart(props: BarChartInterface): React.ReactElement {
   const options = {

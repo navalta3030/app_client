@@ -14,7 +14,7 @@ import {
 import routes from "routes";
 
 // import interface
-import routeInterface from "interface/routes";
+import routeInterface from "interface/RoutesInterface";
 
 const HomeLayout = (): React.ReactElement => {
   const getRoutes = (routes: routeInterface[]): any => {

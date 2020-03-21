@@ -1,5 +1,5 @@
 import * as React from "react";
-import Banner from "component/top_banner";
+import Banner from "component/TopBanner";
 
 export default class VhIndex extends React.Component {
   render(): React.ReactElement {
