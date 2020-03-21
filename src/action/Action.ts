@@ -1,6 +1,6 @@
 // THIS ARE ALL THE TYPE SELECTORS
 
-import Action from "interface/action/action";
+import Action from "interface/action/ActionInterface";
 import InitialStateInterface from "interface/reducer/reducer";
 
 export const GETTEST = "GETTEST";

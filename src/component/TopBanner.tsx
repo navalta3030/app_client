@@ -1,6 +1,6 @@
 import { Container, Alert } from "reactstrap";
 import * as React from "react";
-import TopBannerInterface from "interface/topbanner";
+import TopBannerInterface from "interface/TopBannerInterface";
 
 const Banner = (props: TopBannerInterface): React.ReactElement => {
   return (

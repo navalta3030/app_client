@@ -1,4 +1,4 @@
-import { GETTEST } from "action";
+import { GETTEST } from "action/Action";
 import InitialStateInterface from "interface/reducer/reducer";
 
 const initialState: InitialStateInterface = {
