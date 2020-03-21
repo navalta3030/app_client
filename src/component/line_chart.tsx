@@ -1,19 +1,20 @@
-import React from 'react'
-import Highcharts from 'highcharts'
+import * as React from 'react'
+import * as Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
+import lineChartInterface from 'interface/linechart'
 
-export default function LineChart(props) {
+export default function LineChart(props: lineChartInterface) {
 
     const options = {
         chart: {
-            type: 'spline', 
+            type: 'spline',
         },
-        title: { text: props.data.title && "Line Chart"},
+        title: { text: props.data.title && "Line Chart" },
         xAxis: {
             title: {
                 text: props.data.x.title
             },
-            categories : props.data.x.label,
+            categories: props.data.x.label,
             max: props.data.x.label.length - 1
         },
         yAxis: {
@@ -28,7 +29,7 @@ export default function LineChart(props) {
             crosshairs: true,
             shared: true
         },
-        series: props.data.y.data.map( data_object => {
+        series: props.data.y.data.map((data_object: { data_name: any; data: any }) => {
             return {
                 name: data_object.data_name,
                 dataLabels: {
@@ -42,13 +43,13 @@ export default function LineChart(props) {
             enabled: true
         },
     }
-  console.log(options)
-  return (
-    <div>
-        <HighchartsReact
-            highcharts={Highcharts}
-            options={options}
-        />
-    </div>
-  ) 
+
+    return (
+        <div>
+            <HighchartsReact
+                highcharts={Highcharts}
+                options={options}
+            />
+        </div>
+    )
 }

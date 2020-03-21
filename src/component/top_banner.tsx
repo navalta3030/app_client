@@ -1,11 +1,11 @@
-import React from 'react'
 import {
   Container,
   Alert
 } from "reactstrap";
+import * as React from 'react';
+import topBannerInterface from 'interface/topbanner';
 
-
-export default function Banner(props) {
+const Banner: React.SFC<topBannerInterface> = (props) => {
   return (
     <div className="top_banner">
       <Container fluid={true}>
@@ -16,3 +16,5 @@ export default function Banner(props) {
     </div>
   )
 }
+
+export default Banner;
