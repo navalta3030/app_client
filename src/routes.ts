@@ -3,9 +3,9 @@ import Test from "views/home/vh_test";
 import HighChart from "views/home/vh_highchart";
 
 // import interface
-import routesInterface from "interface/routes";
+import RoutesInterface from "interface/routes";
 
-const routes: routesInterface[] = [
+const routes: RoutesInterface[] = [
   {
     layout: "/home",
     path: "/index",

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import { Route, Switch, Link } from "react-router-dom";
 import {
@@ -15,8 +16,8 @@ import routes from "routes";
 // import interface
 import routeInterface from "interface/routes";
 
-const Home: any = () => {
-  const getRoutes = (routes: routeInterface[]) => {
+const HomeLayout = (): React.ReactElement => {
+  const getRoutes = (routes: routeInterface[]): any => {
     return routes.map((prop, key) => {
       if (prop.layout === "/home") {
         return (
@@ -32,7 +33,7 @@ const Home: any = () => {
     });
   };
 
-  const getNavLinks = (routes: routeInterface[]) => {
+  const getNavLinks = (routes: routeInterface[]): any => {
     return routes.map((prop, key) => {
       if (prop.layout === "/home") {
         return (
@@ -73,4 +74,4 @@ const Home: any = () => {
   );
 };
 
-export default Home;
+export default HomeLayout;

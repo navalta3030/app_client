@@ -9,6 +9,7 @@ export const getTest = (payload: InitialStateInterface): Action => ({
   payload: payload
 });
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const setTest = (state: InitialStateInterface) => (
   dispatch: (arg0: Action) => void
 ) => {
