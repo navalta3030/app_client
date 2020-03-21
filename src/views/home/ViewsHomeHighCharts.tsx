@@ -1,6 +1,6 @@
 import * as React from "react";
-import BarChart from "component/bar_chart";
-import LineChart from "component/line_chart";
+import BarChart from "component/BarChart";
+import LineChart from "component/LineChart";
 
 export default class VhHgihChart extends React.Component {
   barChart_data = {
