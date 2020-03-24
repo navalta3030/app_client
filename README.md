@@ -1,3 +1,8 @@
+## Overview
+- The goal of this application is to be a web applciation to detect x-ray images you uploaded and recommend foods to eat IF you have a 
+disease.
+  - For example, you have an alergy. Then it will recommend Anti-histamin nutricious foods.
+
 ## Enviroment Setup with VSCode
 
 - Linting
