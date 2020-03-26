@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDom from "react-dom";
-import TopBanner from "component/TopBanner";
+import TopBanner from "component/TopBannerComponent";
 
 it("renders linechart component without crashing", () => {
   const div = document.createElement("div");

@@ -1,8 +1,10 @@
 import { Container, Alert } from "reactstrap";
 import * as React from "react";
+
+// custom imports
 import TopBannerInterface from "interface/TopBannerInterface";
 
-const Banner = (props: TopBannerInterface): React.ReactElement => {
+const BannerComponent = (props: TopBannerInterface): React.ReactElement => {
   return (
     <div className="top_banner">
       <Container fluid={true}>
@@ -14,4 +16,4 @@ const Banner = (props: TopBannerInterface): React.ReactElement => {
   );
 };
 
-export default Banner;
+export default BannerComponent;
