@@ -1,19 +1,36 @@
-import { GETTEST } from "action/Action";
-import InitialStateInterface from "interface/reducer/reducer";
+import InitialStateInterface from "interface/reducer/ReducerInterface";
+import { LOGIN, LOGOUT } from "interface/action/AccountActionInterface";
 
 const initialState: InitialStateInterface = {
-  test: "test"
+  user: {
+    name: "",
+    data: []
+  },
+  isAuthenticated: false
 };
 
-export const Reducer: any = (
+export const AccountReducer = (
   state = initialState,
-  action: { type: string }
-) => {
+  action: any
+): InitialStateInterface => {
   switch (action.type) {
-    case GETTEST:
+    case LOGIN:
       return Object.assign({}, state, {
         ...state,
-        test: "Worked"
+        user: {
+          name: action.payload.name,
+          data: action.payload.data
+        },
+        isAuthenticated: action.payload.isAuthenticated
+      });
+    case LOGOUT:
+      return Object.assign({}, state, {
+        ...state,
+        user: {
+          name: "",
+          data: []
+        },
+        isAuthenticated: action.payload.isAuthenticated
       });
     default:
       return state;

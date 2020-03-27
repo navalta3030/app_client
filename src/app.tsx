@@ -1,29 +1,31 @@
 import * as React from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
+import thunk, { ThunkMiddleware } from "redux-thunk";
+import { AccountReducer } from "reducers/Reducers";
 
-import { Reducer } from "reducers/Reducers";
-import HomeLayout from "layout/HomeLayout";
+// custom imports
+import AuthenticatedSwitch from "utils/AuthenticationSwitch";
+import history from "utils/History";
+import { AccountActionTypes } from "interface/action/AccountActionInterface";
 
 const store = createStore(
   combineReducers({
-    app: Reducer
+    account: AccountReducer
   }),
-  applyMiddleware(thunk) // ajax handling
+  applyMiddleware(thunk as ThunkMiddleware<AccountActionTypes>) // ajax handling
 );
 
 class App extends React.Component {
   render(): React.ReactElement {
     return (
       <Provider store={store}>
-        <BrowserRouter>
+        <Router history={history}>
           <Switch>
-            <Route path="/home" render={HomeLayout} />
-            <Redirect from="/" to="/home/index" />
+            <Route path="/" component={AuthenticatedSwitch} />
           </Switch>
-        </BrowserRouter>
+        </Router>
       </Provider>
     );
   }

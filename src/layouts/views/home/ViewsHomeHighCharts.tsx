@@ -1,8 +1,10 @@
 import * as React from "react";
-import BarChart from "component/BarChart";
-import LineChart from "component/LineChart";
 
-export default class VhHgihChart extends React.Component {
+// custom imports
+import BarChartComponent from "component/BarChartComponent";
+import LineChartComponent from "component/LineChartComponent";
+
+export default class ViewsHomeHighCharts extends React.Component {
   barChart_data = {
     title: {
       text: "High Chart"
@@ -144,8 +146,8 @@ export default class VhHgihChart extends React.Component {
   render(): React.ReactElement {
     return (
       <div>
-        <BarChart data={this.barChart_data} />
-        <LineChart data={this.linechart_data} />
+        <BarChartComponent data={this.barChart_data} />
+        <LineChartComponent data={this.linechart_data} />
       </div>
     );
   }
