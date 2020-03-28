@@ -12,6 +12,7 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
   local_dir: build
+  fqdn: react.marknavalta.com
   on:
     branch: master
 on:
