@@ -3,45 +3,45 @@ import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 // custom imports
-import lineChartInterface from "interface/LineChartsInterface";
+import lineChartInterface from "interface/component/LineChartsInterface";
 
-export default function LineChartComponent(props: lineChartInterface): any {
+const LineChartComponent: React.FC<{ data: lineChartInterface }> = ({
+  data
+}): React.ReactElement => {
   const options = {
     chart: {
       type: "spline"
     },
-    title: { text: props.data.title && "Line Chart" },
+    title: { text: data.title && "Line Chart" },
     xAxis: {
       title: {
-        text: props.data.x.title
+        text: data.x.title
       },
-      categories: props.data.x.label,
-      max: props.data.x.label.length - 1
+      categories: data.x.label,
+      max: data.x.label.length - 1
     },
     yAxis: {
       title: {
-        text: props.data.y.title
+        text: data.y.title
       },
       min: 0,
-      max: props.data.y.limit || 30,
+      max: data.y.limit || 30,
       reversed: false
     },
     tooltip: {
       crosshairs: true,
       shared: true
     },
-    series: props.data.y.data.map(
-      (dataObject: { dataName: any; data: any }) => {
-        return {
-          name: dataObject.dataName,
-          dataLabels: {
-            enabled: false,
-            format: "{y:,.2f}"
-          },
-          data: dataObject.data
-        };
-      }
-    ),
+    series: data.y.data.map((dataObject: { dataName: any; data: any }) => {
+      return {
+        name: dataObject.dataName,
+        dataLabels: {
+          enabled: false,
+          format: "{y:,.2f}"
+        },
+        data: dataObject.data
+      };
+    }),
     legend: {
       enabled: true
     }
@@ -52,4 +52,6 @@ export default function LineChartComponent(props: lineChartInterface): any {
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );
-}
+};
+
+export default LineChartComponent;

@@ -1,4 +1,5 @@
-import HomeIndex from "layouts/views/authenticated/ViewsAuthenticatedHome";
+import ViewsAuthenticatedIndex from "layouts/views/authenticated/ViewsAuthenticatedHome";
+import ViewsAuthenticatedTable from "layouts/views/authenticated/ViewsAuthenticatedTable";
 
 // import interface
 import RoutesInterface from "interface/RoutesInterface";
@@ -7,7 +8,12 @@ const routes: RoutesInterface[] = [
   {
     path: "/",
     name: "Home",
-    view: HomeIndex
+    view: ViewsAuthenticatedIndex
+  },
+  {
+    path: "/table",
+    name: "records",
+    view: ViewsAuthenticatedTable
   }
 ];
 
