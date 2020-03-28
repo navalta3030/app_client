@@ -3,29 +3,29 @@ import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 // custom imports
-import BarChartInterface from "interface/BarChartsInterface";
+import BarChartInterface from "interface/component/BarChartsInterface";
 
-export default function BarChartComponent(
-  props: BarChartInterface
-): React.ReactElement {
+const BarChartComponent: React.FC<{ data: BarChartInterface }> = ({
+  data
+}): React.ReactElement => {
   const options = {
     chart: {
       type: "column"
     },
-    title: { text: props.data.title && "Bar Chart with Data Sorting" },
+    title: { text: data.title && "Bar Chart with Data Sorting" },
     xAxis: {
-      categories: props.data.x.data,
+      categories: data.x.data,
       crosshair: true
     },
     yAxis: {
       title: {
-        text: props.data.y.title
+        text: data.y.title
       },
       min: 0,
-      max: props.data.y.limit,
+      max: data.y.limit,
       reversed: false
     },
-    series: props.data.y.data,
+    series: data.y.data,
     legend: {
       enabled: true
     }
@@ -36,4 +36,6 @@ export default function BarChartComponent(
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );
-}
+};
+
+export default BarChartComponent;
