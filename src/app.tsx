@@ -24,6 +24,7 @@ class App extends React.Component {
         <Router history={history}>
           <Switch>
             <Route path="/" component={AuthenticatedSwitch} />
+            <Route component={AuthenticatedSwitch} />
           </Switch>
         </Router>
       </Provider>
