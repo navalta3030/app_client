@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import thunk, { ThunkMiddleware } from "redux-thunk";
@@ -24,7 +24,7 @@ class App extends React.Component {
         <Router history={history}>
           <Switch>
             <Route path="/" component={AuthenticatedSwitch} />
-            <Redirect path="*" to="/" />
+            <Route component={AuthenticatedSwitch} />
           </Switch>
         </Router>
       </Provider>
