@@ -17,12 +17,11 @@ disease.
 ## Instructions
 
 - Adding more navigation goes along with views.
-  - under src/views/home, create another .file or copy one of those files inside it.
-  - under src/routes.js.
+  - under src/layouts/views/home, create another .file or copy one of those files inside it.
+  - under src/layours/routes/HomeRouts.ts
     - add your object inside the array
-      - layout : this is the main route after root.
-      - path : After the home layout, this is the route.
-      - name : this is the nav link
+      - path : this is the route path.
+      - name : this is the nav link shown in the navigation bar
       - views : which view teamplate should it generate?
 
 ## Docker documentation
