@@ -8,6 +8,10 @@ import lineChartInterface from "interface/component/LineChartsInterface";
 const LineChartComponent: React.FC<{ data: lineChartInterface }> = ({
   data
 }): React.ReactElement => {
+  /*
+    Refer to link below for documentation
+    {@link https://www.highcharts.com/demo/line-basic}
+  */
   const options = {
     chart: {
       type: "spline"

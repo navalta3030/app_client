@@ -55,6 +55,7 @@ export const UserLogin = () => (dispatch: any): any => {
  * LOGOUT
  */
 export const UserLogOut = () => (dispatch: any): any => {
+  // delete localStorage jwt
   deleteJWT();
   dispatch(LogOut({ isAuthenticated: false }));
 
@@ -65,6 +66,7 @@ export const UserLogOut = () => (dispatch: any): any => {
  * VALIDATEAUTHENTICATION
  */
 export const UserValidateAuthentication = () => (dispatch: any): any => {
+  // verify if user has a valid jwt token through the server
   if (validateToken(getJWT())) {
     dispatch(LogOut({ isAuthenticated: true }));
   } else {

@@ -6,11 +6,19 @@ import TableInterface from "interface/component/TableComponent";
 const TableComponent: React.FC<{ data: TableInterface }> = ({
   data
 }): React.ReactElement => {
+  /* 
+    Returns a collection of table headers specifically columns.
+    @link - https://reactstrap.github.io/components/tables/
+  */
   const getTableColumns = (): any => {
     data.columns.unshift("#");
     return data.columns.map((column, i) => <th key={i}>{column}</th>);
   };
 
+  /* 
+    Returns a collection of table rows.
+    {@link https://reactstrap.github.io/components/tables/}
+  */
   const getTableBody = (): React.ReactElement => {
     return (
       <tbody>

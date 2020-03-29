@@ -8,6 +8,10 @@ import BarChartInterface from "interface/component/BarChartsInterface";
 const BarChartComponent: React.FC<{ data: BarChartInterface }> = ({
   data
 }): React.ReactElement => {
+  /* 
+    Refer to link below for documentation
+    {@link https://www.highcharts.com/demo/column-basic}
+  */
   const options = {
     chart: {
       type: "column"

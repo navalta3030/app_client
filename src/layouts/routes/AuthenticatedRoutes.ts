@@ -3,6 +3,7 @@ import ViewsAuthenticatedTable from "layouts/views/authenticated/ViewsAuthentica
 
 // import interface
 import RoutesInterface from "interface/RoutesInterface";
+import ViewsAuthenticatedImageUpload from "layouts/views/authenticated/ViewsAuthenticatedImageUpload";
 
 const routes: RoutesInterface[] = [
   {
@@ -14,6 +15,11 @@ const routes: RoutesInterface[] = [
     path: "/table",
     name: "records",
     view: ViewsAuthenticatedTable
+  },
+  {
+    path: "/upload",
+    name: "upload",
+    view: ViewsAuthenticatedImageUpload
   }
 ];
 
