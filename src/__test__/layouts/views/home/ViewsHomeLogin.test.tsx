@@ -3,7 +3,7 @@ import ReactDom from "react-dom";
 import Login from "layouts/views/home/ViewsHomeLogin";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
-import { AccountReducer } from "reducers/Reducers";
+import { AccountReducer } from "reducers/AccountReducers";
 
 it("Should render login", () => {
   const div = document.createElement("div");

@@ -1,50 +1,47 @@
-import { Container } from "reactstrap";
 import * as React from "react";
+import { Container } from "reactstrap";
+import { connect } from "react-redux";
 import ImageUploader from "react-images-upload";
 import FlipMove from "react-flip-move";
 
+// custom imports
+import {
+  ImageUploadOnDrop,
+  ImageUploadOnRemove
+} from "action/ImageUploadAction";
+import { RootState } from "ReduxStore";
+import ImageUploadComponentInterface from "_interface/component/ImageUploadComponentInterface";
+
 const AllowedImageExtension: string[] = [".jpg", ".gif", ".png", ".gif"];
 
-const ImageUploadComponent = (): React.ReactElement => {
-  const [ImagesBase64, setImagesBase64] = React.useState<string[]>([]);
-  const [ImageFiles, setImageFiles] = React.useState<File[]>([]);
-
-  /* 
-    Function is called after uploading the image.
-    Array parameters are stacked are user uploads more pictures.
-
-    {@link https://github.com/JakeHartnell/react-images-upload}
-  */
-  const onDrop = (pictureFiles: File[], pictureDataURLs: string[]): void => {
-    console.log(pictureFiles, pictureDataURLs);
-
-    setImagesBase64(pictureDataURLs);
-    setImageFiles(pictureFiles);
-  };
-
-  /* 
-    Filters the image on the array list collection by index and deletes it.
-    reference : {@link https://github.com/JakeHartnell/react-images-upload/blob/master/src/component/index.js}
-  */
+const ImageUploadComponent: React.FC<ImageUploadComponentInterface> = ({
+  pictureDataURLs,
+  pictureFiles,
+  ImageUploadOnDrop,
+  ImageUploadOnRemove
+}): React.ReactElement => {
+  /**
+   *  Filters the image on the array list collection by index and deletes it.
+   *  reference : {@link https://github.com/JakeHartnell/react-images-upload/blob/master/src/component/index.js}
+   */
   const removeImage = (picture: string): void => {
-    const removeIndex = ImagesBase64.findIndex(e => e === picture);
-    const filteredPictures = ImagesBase64.filter(
+    const removeIndex = pictureDataURLs.findIndex(e => e === picture);
+    const filteredPictures = pictureDataURLs.filter(
       (e, index) => index !== removeIndex
     );
-    const filteredFiles = ImageFiles.filter(
+    const filteredFiles = pictureFiles.filter(
       (e, index) => index !== removeIndex
     );
 
-    setImageFiles(filteredFiles);
-    setImagesBase64(filteredPictures);
+    ImageUploadOnRemove(filteredFiles, filteredPictures);
   };
 
-  /* 
-    After User uploads image, this function will render the images.
-    reference : {@link https://github.com/JakeHartnell/react-images-upload/blob/master/src/component/index.js}
-  */
+  /**
+   *  After User uploads image, this function will render the images.
+   *  reference : {@link https://github.com/JakeHartnell/react-images-upload/blob/master/src/component/index.js}
+   */
   const renderPreviewPictures = (): React.ReactElement[] => {
-    return ImagesBase64.map((picture, index) => {
+    return pictureDataURLs.map((picture, index) => {
       return (
         <div key={index} className="uploadPictureContainer">
           <div
@@ -59,21 +56,13 @@ const ImageUploadComponent = (): React.ReactElement => {
     });
   };
 
-  // const styles = {
-  //   display: "flex",
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  //   flexWrap: "wrap",
-  //   width: "100%"
-  // };
-
   return (
     <div>
       <Container fluid={true}>
         <ImageUploader
           withIcon={true}
           buttonText="Choose images"
-          onChange={onDrop}
+          onChange={ImageUploadOnDrop}
           imgExtension={AllowedImageExtension}
           maxFileSize={10242880}
         ></ImageUploader>
@@ -91,4 +80,29 @@ const ImageUploadComponent = (): React.ReactElement => {
   );
 };
 
-export default ImageUploadComponent;
+const mapDispatchToProps = (dispatch: any): any => {
+  return {
+    ImageUploadOnDrop: (
+      pictureFiles: File[],
+      pictureDataURLs: string[]
+    ): any => {
+      dispatch(ImageUploadOnDrop(pictureFiles, pictureDataURLs));
+    },
+    ImageUploadOnRemove: (
+      pictureFiles: File[],
+      pictureDataURLs: string[]
+    ): any => {
+      dispatch(ImageUploadOnRemove(pictureFiles, pictureDataURLs));
+    }
+  };
+};
+
+const mapStateToProps = (state: RootState): any => ({
+  pictureFiles: state.imageUpload.pictureFiles,
+  pictureDataURLs: state.imageUpload.pictureDataURLs
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ImageUploadComponent);

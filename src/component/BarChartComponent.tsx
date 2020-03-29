@@ -3,15 +3,15 @@ import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 // custom imports
-import BarChartInterface from "interface/component/BarChartsInterface";
+import BarChartComponentInterface from "_interface/component/BarChartsComponentInterface";
 
-const BarChartComponent: React.FC<{ data: BarChartInterface }> = ({
+const BarChartComponent: React.FC<{ data: BarChartComponentInterface }> = ({
   data
 }): React.ReactElement => {
-  /* 
-    Refer to link below for documentation
-    {@link https://www.highcharts.com/demo/column-basic}
-  */
+  /**
+   *  Refer to link below for documentation
+   * {@link https://www.highcharts.com/demo/column-basic}
+   */
   const options = {
     chart: {
       type: "column"

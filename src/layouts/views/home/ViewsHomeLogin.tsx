@@ -9,14 +9,10 @@ import { connect } from "react-redux";
 
 // custom imports
 import { UserLogin } from "action/AccountAction";
+import { RootState } from "ReduxStore";
+import ViewsHomeLoginInterface from "_interface/layouts/views/home/ViewsHomeLoginInterface";
 
-interface Props {
-  UserLogin: any;
-  isAuthenticated: boolean;
-  history: any;
-}
-
-class ViewsHomeLogin extends React.Component<Props> {
+class ViewsHomeLogin extends React.Component<ViewsHomeLoginInterface> {
   handleLogin(): void {
     this.props.UserLogin();
   }
@@ -46,7 +42,7 @@ const mapDispatchToProps = (dispatch: any): any => {
   };
 };
 
-const mapStateToProps = (state: any): any => ({
+const mapStateToProps = (state: RootState): any => ({
   user: state.account.user,
   isAuthenticated: state.account.isAuthenticated
 });

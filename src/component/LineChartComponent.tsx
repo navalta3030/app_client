@@ -3,15 +3,15 @@ import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 // custom imports
-import lineChartInterface from "interface/component/LineChartsInterface";
+import lineChartInterface from "_interface/component/LineChartsComponentInterface";
 
 const LineChartComponent: React.FC<{ data: lineChartInterface }> = ({
   data
 }): React.ReactElement => {
-  /*
-    Refer to link below for documentation
-    {@link https://www.highcharts.com/demo/line-basic}
-  */
+  /**
+   *  Refer to link below for documentation
+   *  {@link https://www.highcharts.com/demo/line-basic}
+   */
   const options = {
     chart: {
       type: "spline"

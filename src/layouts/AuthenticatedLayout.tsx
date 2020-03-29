@@ -12,15 +12,14 @@ import {
 } from "reactstrap";
 
 // custom imports
-import routeInterface from "interface/RoutesInterface";
+import routeInterface from "_interface/RoutesInterface";
 import { UserLogOut } from "action/AccountAction";
 import routes from "layouts/routes/AuthenticatedRoutes";
+import AuthenticatedLayoutInterface from "_interface/layouts/AuthenticatedLayoutInterface";
 
-interface Props {
-  UserLogOut: any;
-}
-
-class AuthenticatedLayout extends React.Component<Props> {
+class AuthenticatedLayout extends React.Component<
+  AuthenticatedLayoutInterface
+> {
   getRoutes = (routes: routeInterface[]): any => {
     return routes.map((prop, key) => {
       return <Route exact path={prop.path} component={prop.view} key={key} />;
@@ -55,7 +54,7 @@ class AuthenticatedLayout extends React.Component<Props> {
             <Nav
               tag={Link}
               to={"/"}
-              onClick={(): void => this.props.UserLogOut()}
+              onClick={(): any => this.props.UserLogOut()}
             >
               Log Out
             </Nav>

@@ -5,6 +5,6 @@ import * as ReactDOM from "react-dom";
 import App from "app";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "assets/scss/index.scss";
+import "_assets/scss/index.scss";
 
 ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);

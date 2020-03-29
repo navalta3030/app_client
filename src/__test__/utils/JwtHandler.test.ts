@@ -1,4 +1,4 @@
-import { getJWT, setJWT, deleteJWT, refreshJWt } from "utils/JwtHandler";
+import { getJWT, setJWT, deleteJWT, refreshJWt } from "_utils/JwtHandler";
 
 it("Should test JWTHandler", () => {
   jest.spyOn(Storage.prototype, "getItem").mockImplementation(() => "Hello");

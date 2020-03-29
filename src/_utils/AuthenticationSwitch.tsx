@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 // custom imports
 import AuthenticatedLayout from "layouts/AuthenticatedLayout";
 import HomeLayout from "layouts/HomeLayout";
-import { UserValidateAuthentication } from "action/AccountAction";
+import { UserValidateAuthentication, UserLogOut } from "action/AccountAction";
+import { RootState } from "ReduxStore";
 
 interface Props {
   isAuthenticated: boolean;
@@ -19,14 +20,16 @@ class AuthenticationSwitch extends React.Component<Props> {
   }
   render(): React.ReactElement {
     if (this.props.isAuthenticated) {
-      return <AuthenticatedLayout UserLogOut={null}></AuthenticatedLayout>;
+      return (
+        <AuthenticatedLayout UserLogOut={UserLogOut}></AuthenticatedLayout>
+      );
     } else {
       return <HomeLayout></HomeLayout>;
     }
   }
 }
 
-const mapStateToProps = (state: any): any => ({
+const mapStateToProps = (state: RootState): any => ({
   isAuthenticated: state.account.isAuthenticated
 });
 
