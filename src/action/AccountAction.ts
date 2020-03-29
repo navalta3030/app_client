@@ -4,17 +4,17 @@ import {
   LOGOUT,
   VALIDATEAUTHENTICATION,
   AccountActionTypes
-} from "interface/action/AccountActionInterface";
+} from "_interface/action/Account/AccountActionInterface";
 import {
   PayLoadLoginInterface,
   PayLoadLogOutInterface,
   PayLoadValidateAuthenticationInterface
-} from "interface/action/AccountActionPayloadInterface";
+} from "_interface/action/Account/AccountActionPayloadInterface";
 
 // custom imports
-import History from "utils/History";
-import { validateToken } from "../utils/validateToken";
-import { setJWT, deleteJWT, getJWT } from "utils/JwtHandler";
+import History from "_utils/History";
+import { validateToken } from "../_utils/validateToken";
+import { setJWT, deleteJWT, getJWT } from "_utils/JwtHandler";
 
 export const Login = (payload: PayLoadLoginInterface): AccountActionTypes => ({
   type: LOGIN,
@@ -33,8 +33,8 @@ export const ValidateAuthentication = (
   payload: payload
 });
 
-/*
- * LOGIN
+/**
+ * User @Login
  */
 export const UserLogin = () => (dispatch: any): any => {
   // disable api call temporarily
@@ -51,8 +51,8 @@ export const UserLogin = () => (dispatch: any): any => {
   History.push("/");
 };
 
-/*
- * LOGOUT
+/**
+ * User @Logout
  */
 export const UserLogOut = () => (dispatch: any): any => {
   // delete localStorage jwt
@@ -62,8 +62,8 @@ export const UserLogOut = () => (dispatch: any): any => {
   History.push("/");
 };
 
-/*
- * VALIDATEAUTHENTICATION
+/**
+ * User @ValidateAuthentication
  */
 export const UserValidateAuthentication = () => (dispatch: any): any => {
   // verify if user has a valid jwt token through the server

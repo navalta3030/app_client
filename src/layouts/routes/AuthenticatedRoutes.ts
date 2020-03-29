@@ -2,7 +2,7 @@ import ViewsAuthenticatedIndex from "layouts/views/authenticated/ViewsAuthentica
 import ViewsAuthenticatedTable from "layouts/views/authenticated/ViewsAuthenticatedTable";
 
 // import interface
-import RoutesInterface from "interface/RoutesInterface";
+import RoutesInterface from "_interface/RoutesInterface";
 import ViewsAuthenticatedImageUpload from "layouts/views/authenticated/ViewsAuthenticatedImageUpload";
 
 const routes: RoutesInterface[] = [

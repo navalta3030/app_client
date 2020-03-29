@@ -12,7 +12,7 @@ import {
 
 // custom imports
 import routes from "layouts/routes/HomeRoutes";
-import routeInterface from "interface/RoutesInterface";
+import routeInterface from "_interface/RoutesInterface";
 
 const LOGIN_LINK = "/login";
 

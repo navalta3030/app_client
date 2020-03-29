@@ -1,18 +1,15 @@
-import InitialStateInterface from "interface/reducer/ReducerInterface";
-import { LOGIN, LOGOUT } from "interface/action/AccountActionInterface";
-
-const initialState: InitialStateInterface = {
-  user: {
-    name: "",
-    data: []
-  },
-  isAuthenticated: false
-};
+import {
+  LOGIN,
+  LOGOUT,
+  AccountActionTypes
+} from "_interface/action/Account/AccountActionInterface";
+import { AccountStateInterface } from "_interface/reducer/ReducerStateInterface";
+import AccountInitialState from "./InitialState/AccountInitialState";
 
 export const AccountReducer = (
-  state = initialState,
-  action: any
-): InitialStateInterface => {
+  state = AccountInitialState,
+  action: AccountActionTypes
+): AccountStateInterface => {
   switch (action.type) {
     case LOGIN:
       return Object.assign({}, state, {

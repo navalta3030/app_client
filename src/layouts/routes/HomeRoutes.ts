@@ -3,7 +3,7 @@ import HighChart from "layouts/views/home/ViewsHomeHighCharts";
 import Login from "layouts/views/home/ViewsHomeLogin";
 
 // import interface
-import RoutesInterface from "interface/RoutesInterface";
+import RoutesInterface from "_interface/RoutesInterface";
 
 const routes: RoutesInterface[] = [
   {

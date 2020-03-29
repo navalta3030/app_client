@@ -1,7 +1,8 @@
 import { Container, Alert } from "reactstrap";
 import * as React from "react";
+import TopBannerComponentInterface from "_interface/component/TopBannerComponentInterface";
 
-const BannerComponent: React.FC<{ title: string }> = ({
+const BannerComponent: React.FC<TopBannerComponentInterface> = ({
   title
 }): React.ReactElement => {
   return (
