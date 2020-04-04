@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: react-client
+  namespace: default
+data:
+  sanic_server: sanic-server

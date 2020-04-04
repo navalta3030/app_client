@@ -3,11 +3,9 @@ kind: Service
 metadata:
   name: react-client
 spec:
-  type: NodePort # ClusterIP
+  type: LoadBalancer
   selector:
     component: web
   ports:
     - name: endpoint
       port: 3000
-      targetPort: 3000
-      nodePort: 30000
