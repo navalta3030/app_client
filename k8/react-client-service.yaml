@@ -5,7 +5,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    component: web
+    component: react-client
   ports:
     - name: endpoint
       port: 3000

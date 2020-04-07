@@ -1,2 +1,2 @@
 /* eslint-disable no-undef */
-export const API_SERVER = window.location.hostname || "http://localhost:8000";
+export const API_SERVER = window.location.hostname || "http://localhost:8080";

@@ -8,7 +8,6 @@ const callApiGet = (endpoint: string, secured: boolean): void => {
   console.log("calling :" + url);
   if (secured) {
     headers["Authorization"] = "Bearer" + getJWT();
-    // headers["Access-Control-Allow-Origin"] = "*";
   }
   axios
     .get(url, { headers })

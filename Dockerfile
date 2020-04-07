@@ -1,4 +1,4 @@
-FROM node:alpine as builder
+FROM node:12.16.1-buster as builder
 WORKDIR '/app'
 COPY ./package.json ./
 RUN npm install

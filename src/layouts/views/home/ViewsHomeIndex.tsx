@@ -10,7 +10,9 @@ export default class ViewsHomeIndex extends React.Component {
     return (
       <div>
         <BannerComponent title="index"></BannerComponent>
-        <Button onClick={(): any => callApiGet("/", false)}>Click me</Button>
+        <Button onClick={(): any => callApiGet("/api/ml", false)}>
+          Click me
+        </Button>
       </div>
     );
   }
