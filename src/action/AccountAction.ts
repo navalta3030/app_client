@@ -4,45 +4,64 @@ import {
   LOGOUT,
   VALIDATEAUTHENTICATION,
   AccountActionTypes
-} from "_interface/action/Account/AccountActionInterface";
+} from "_interface/action_reducer/Account/AccountActionInterface";
 import {
-  PayLoadLoginInterface,
-  PayLoadLogOutInterface,
-  PayLoadValidateAuthenticationInterface
-} from "_interface/action/Account/AccountActionPayloadInterface";
+  PayLoadAccountInterface,
+  PayloadAuthenticationInterface
+} from "_interface/action_reducer/Account/AccountActionPayloadInterface";
 
 // custom imports
 import History from "_utils/History";
 import { validateToken } from "../_utils/validateToken";
 import { setJWT, deleteJWT, getJWT } from "_utils/JwtHandler";
+import { callApiPost } from "_utils/CallApi";
+import { LoginApiResponseInterface } from "_interface/api/LoginApiResponseInterface";
 
-export const Login = (payload: PayLoadLoginInterface): AccountActionTypes => ({
+export const Login = (
+  payload: PayLoadAccountInterface
+): AccountActionTypes => ({
   type: LOGIN,
   payload: payload
 });
+
 export const LogOut = (
-  payload: PayLoadLogOutInterface
+  payload: PayloadAuthenticationInterface
 ): AccountActionTypes => ({
   type: LOGOUT,
   payload: payload
 });
+
 export const ValidateAuthentication = (
-  payload: PayLoadValidateAuthenticationInterface
+  payload: PayloadAuthenticationInterface
 ): AccountActionTypes => ({
   type: VALIDATEAUTHENTICATION,
   payload: payload
 });
 
 /**
- * User @Login
+ * User @Login - using oAuth2
+ * Google Authentication - {@link https://www.npmjs.com/package/react-google-login}
+ * Facebook Authentication - {@link TODO}
+ *
+ * @param responseFromGoogle - After user sign in using google oAuth, google will pass the info through this function parameter variable
  */
-export const UserLogin = () => (dispatch: any): any => {
-  // disable api call temporarily
-  // axios.get("/login").then(res => {dispatch(UserLogin(res.data));});
-  setJWT("temp_jwt");
+export const UserLogin = (responseFromGoogle: any) => (dispatch: any): any => {
+  const Name: string = responseFromGoogle.profileObj.name;
+  const Email: string = responseFromGoogle.profileObj.email;
+
+  // pass the user information from google to server to obtain jwt token
+  const loginApiEresponse: LoginApiResponseInterface = callApiPost(
+    "/token",
+    { Name, Email },
+    false
+  );
+
+  setJWT(loginApiEresponse.access_token);
+
   dispatch(
     Login({
-      name: "Mark navalta",
+      name: Name,
+      email: Email,
       data: "test_data",
       isAuthenticated: true
     })

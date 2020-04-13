@@ -12,6 +12,12 @@ interface Props {
   UserValidateAuthentication: any;
 }
 
+/**
+ * Description - Highest level route helper for determining if user is authenticated or not,
+ *               also determines if layout should be home or authenticated
+ *
+ * Deciding factor {@link UserValidateAuthentication}
+ */
 class AuthenticationSwitch extends React.Component<Props> {
   constructor(props: any) {
     super(props);

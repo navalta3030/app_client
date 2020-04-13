@@ -7,7 +7,7 @@ import thunk, { ThunkMiddleware } from "redux-thunk";
 // custom imports
 import AuthenticatedSwitch from "_utils/AuthenticationSwitch";
 import history from "_utils/History";
-import { AccountActionTypes } from "_interface/action/Account/AccountActionInterface";
+import { AccountActionTypes } from "_interface/action_reducer/Account/AccountActionInterface";
 import { rootReducer } from "ReduxStore";
 
 const store = createStore(

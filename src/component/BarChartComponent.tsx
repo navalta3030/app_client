@@ -5,8 +5,10 @@ import HighchartsReact from "highcharts-react-official";
 // custom imports
 import BarChartComponentInterface from "_interface/component/BarChartsComponentInterface";
 
-const BarChartComponent: React.FC<{ data: BarChartComponentInterface }> = ({
-  data
+const BarChartComponent: React.FC<BarChartComponentInterface> = ({
+  title,
+  x,
+  y
 }): React.ReactElement => {
   /**
    *  Refer to link below for documentation
@@ -16,20 +18,20 @@ const BarChartComponent: React.FC<{ data: BarChartComponentInterface }> = ({
     chart: {
       type: "column"
     },
-    title: { text: data.title && "Bar Chart with Data Sorting" },
+    title: { text: title && "Bar Chart with Data Sorting" },
     xAxis: {
-      categories: data.x.data,
+      categories: x.data,
       crosshair: true
     },
     yAxis: {
       title: {
-        text: data.y.title
+        text: y.title
       },
       min: 0,
-      max: data.y.limit,
+      max: y.limit,
       reversed: false
     },
-    series: data.y.data,
+    series: y.data,
     legend: {
       enabled: true
     }

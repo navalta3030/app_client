@@ -6,5 +6,5 @@ import Data from "./variables/ChartVar";
 it("renders barchart component without crashing", () => {
   const div = document.createElement("div");
 
-  ReactDom.render(<BarChartComponent data={Data.BarChartData} />, div);
+  ReactDom.render(<BarChartComponent {...Data.BarChartData} />, div);
 });

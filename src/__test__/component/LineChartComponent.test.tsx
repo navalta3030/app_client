@@ -6,5 +6,5 @@ import Data from "./variables/ChartVar";
 it("renders linechart component without crashing", () => {
   const div = document.createElement("div");
 
-  ReactDom.render(<LineChartComponent data={Data.LineChartData} />, div);
+  ReactDom.render(<LineChartComponent {...Data.LineChartData} />, div);
 });

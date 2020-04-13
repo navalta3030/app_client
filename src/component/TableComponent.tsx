@@ -3,16 +3,17 @@ import { Table } from "reactstrap";
 
 import TableComponentInterface from "_interface/component/TableComponentInterface";
 
-const TableComponent: React.FC<{ data: TableComponentInterface }> = ({
-  data
+const TableComponent: React.FC<TableComponentInterface> = ({
+  columns,
+  rows
 }): React.ReactElement => {
   /**
    *  Returns a collection of table headers specifically columns.
    *  @link - https://reactstrap.github.io/components/tables/
    */
   const getTableColumns = (): any => {
-    data.columns.unshift("#");
-    return data.columns.map((column, i) => <th key={i}>{column}</th>);
+    columns.unshift("#");
+    return columns.map((column, i) => <th key={i}>{column}</th>);
   };
 
   /**
@@ -22,7 +23,7 @@ const TableComponent: React.FC<{ data: TableComponentInterface }> = ({
   const getTableBody = (): React.ReactElement => {
     return (
       <tbody>
-        {data.rows.map((row, i) => {
+        {rows.map((row, i) => {
           return (
             <tr key={i}>
               <th scope="row">{i}</th>

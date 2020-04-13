@@ -11,8 +11,9 @@ import {
 } from "action/ImageUploadAction";
 import { RootState } from "ReduxStore";
 import ImageUploadComponentInterface from "_interface/component/ImageUploadComponentInterface";
+import { ALLOWED_IMAGE_EXTENSIONS } from "_utils/ConstantVariables";
 
-const AllowedImageExtension: string[] = [".jpg", ".gif", ".png", ".gif"];
+const AllowedImageExtension: string[] = ALLOWED_IMAGE_EXTENSIONS;
 
 const ImageUploadComponent: React.FC<ImageUploadComponentInterface> = ({
   pictureDataURLs,

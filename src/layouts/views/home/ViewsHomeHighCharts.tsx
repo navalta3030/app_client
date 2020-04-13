@@ -146,8 +146,8 @@ export default class ViewsHomeHighCharts extends React.Component {
   render(): React.ReactElement {
     return (
       <div>
-        <BarChartComponent data={this.barChart_data} />
-        <LineChartComponent data={this.linechart_data} />
+        <BarChartComponent {...this.barChart_data} />
+        <LineChartComponent {...this.linechart_data} />
       </div>
     );
   }

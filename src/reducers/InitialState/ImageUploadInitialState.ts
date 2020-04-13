@@ -1,6 +1,6 @@
-import { ImageUploadStateInterface } from "_interface/reducer/ReducerStateInterface";
+import { PayloadImageInterface } from "_interface/action_reducer/ImageUpload/ImageUploadActionPayloadInterface";
 
-const ImageUploadInitialState: ImageUploadStateInterface = {
+const ImageUploadInitialState: PayloadImageInterface = {
   pictureFiles: [],
   pictureDataURLs: []
 };

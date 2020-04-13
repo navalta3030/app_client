@@ -5,8 +5,10 @@ import HighchartsReact from "highcharts-react-official";
 // custom imports
 import lineChartInterface from "_interface/component/LineChartsComponentInterface";
 
-const LineChartComponent: React.FC<{ data: lineChartInterface }> = ({
-  data
+const LineChartComponent: React.FC<lineChartInterface> = ({
+  title,
+  x,
+  y
 }): React.ReactElement => {
   /**
    *  Refer to link below for documentation
@@ -16,27 +18,27 @@ const LineChartComponent: React.FC<{ data: lineChartInterface }> = ({
     chart: {
       type: "spline"
     },
-    title: { text: data.title && "Line Chart" },
+    title: { text: title && "Line Chart" },
     xAxis: {
       title: {
-        text: data.x.title
+        text: x.title
       },
-      categories: data.x.label,
-      max: data.x.label.length - 1
+      categories: x.label,
+      max: x.label.length - 1
     },
     yAxis: {
       title: {
-        text: data.y.title
+        text: y.title
       },
       min: 0,
-      max: data.y.limit || 30,
+      max: y.limit || 30,
       reversed: false
     },
     tooltip: {
       crosshairs: true,
       shared: true
     },
-    series: data.y.data.map((dataObject: { dataName: any; data: any }) => {
+    series: y.data.map((dataObject: { dataName: any; data: any }) => {
       return {
         name: dataObject.dataName,
         dataLabels: {

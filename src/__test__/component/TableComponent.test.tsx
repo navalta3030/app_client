@@ -8,5 +8,5 @@ import TableComponent from "component/TableComponent";
 it("renders linechart component without crashing", () => {
   const div = document.createElement("div");
 
-  ReactDom.render(<TableComponent data={tableData} />, div);
+  ReactDom.render(<TableComponent {...tableData} />, div);
 });
