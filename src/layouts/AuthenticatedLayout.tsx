@@ -16,6 +16,9 @@ import routeInterface from "_interface/RoutesInterface";
 import { UserLogOut } from "action/AccountAction";
 import routes from "layouts/routes/AuthenticatedRoutes";
 import AuthenticatedLayoutInterface from "_interface/layouts/AuthenticatedLayoutInterface";
+import AlertComponent from "component/helpers/AlertComponent";
+import AlertInitialState from "reducers/InitialState/AlertInitialState";
+import { UserAlert } from "action/AlertAction";
 
 class AuthenticatedLayout extends React.Component<
   AuthenticatedLayoutInterface
@@ -60,6 +63,11 @@ class AuthenticatedLayout extends React.Component<
             </Nav>
           </Navbar>
         </div>
+
+        <AlertComponent
+          {...AlertInitialState}
+          UserAlert={UserAlert}
+        ></AlertComponent>
 
         <div className="main-content">
           <Container>

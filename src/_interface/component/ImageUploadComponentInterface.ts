@@ -1,11 +1,11 @@
 import {
-  ImageUploadOnDrop,
-  ImageUploadOnRemove
+  ImageCollectionOnChange,
+  ImageOnSendToServer
 } from "action/ImageUploadAction";
 
 export default interface ImageUploadComponentInterface {
   pictureFiles: File[];
   pictureDataURLs: string[];
-  ImageUploadOnDrop: typeof ImageUploadOnDrop;
-  ImageUploadOnRemove: typeof ImageUploadOnRemove;
+  ImageCollectionOnChange: typeof ImageCollectionOnChange;
+  ImageOnSendToServer: typeof ImageOnSendToServer;
 }

@@ -1,0 +1,41 @@
+apiVersion: apps/{{ template "version.fullname" .}}
+kind: Deployment
+metadata:
+  name: {{ template "react_client_name.fullname" .}}
+spec:
+  replicas: {{ template "replicas.fullname" .}}
+  selector:
+    matchLabels:
+      component: {{ template "react_client_name.fullname" .}}
+  template:
+    metadata:
+      labels:
+        component: {{ template "react_client_name.fullname" .}}
+        auto-deployment-helper: {{ randAlphaNum 5 | quote }}
+    spec:
+      containers:
+        - name: client
+          image: navalta3030/{{ template "react_client_name.fullname" .}}
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: 100Mi
+              cpu: 100m
+          env:
+          - name: SERVER_URL
+            value: {{ template "server_url.fullname" .}}
+          - name: GOOGLE_CLIENT_ID
+            value: {{ template "google_client_id.fullname" .}}
+---
+apiVersion: {{ template "version.fullname" .}}
+kind: Service
+metadata:
+  name: {{ template "react_client_name.fullname" .}}
+spec:
+  type: ClusterIP
+  selector:
+    component: {{ template "react_client_name.fullname" .}}
+  ports:
+    - name: endpoint
+      port: 3000

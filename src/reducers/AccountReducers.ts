@@ -2,9 +2,9 @@ import {
   LOGIN,
   LOGOUT,
   AccountActionTypes
-} from "_interface/action/Account/AccountActionInterface";
-import { AccountStateInterface } from "_interface/reducer/ReducerStateInterface";
+} from "_interface/action_reducer/Account/AccountActionTypesInterface";
 import AccountInitialState from "./InitialState/AccountInitialState";
+import { AccountStateInterface } from "_interface/action_reducer/Account/AccountStateInterface";
 
 export const AccountReducer = (
   state = AccountInitialState,
@@ -14,19 +14,17 @@ export const AccountReducer = (
     case LOGIN:
       return Object.assign({}, state, {
         ...state,
-        user: {
-          name: action.payload.name,
-          data: action.payload.data
-        },
+        name: action.payload.name,
+        data: action.payload.data,
+        email: action.payload.email,
         isAuthenticated: action.payload.isAuthenticated
       });
     case LOGOUT:
       return Object.assign({}, state, {
         ...state,
-        user: {
-          name: "",
-          data: []
-        },
+        name: "",
+        email: "",
+        data: [],
         isAuthenticated: action.payload.isAuthenticated
       });
     default:

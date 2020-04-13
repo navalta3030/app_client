@@ -15,6 +15,6 @@ export default class ViewsAuthenticatedIndex extends React.Component {
     ]
   };
   render(): React.ReactElement {
-    return <div>{<TableComponent data={this.table}></TableComponent>}</div>;
+    return <div>{<TableComponent {...this.table}></TableComponent>}</div>;
   }
 }

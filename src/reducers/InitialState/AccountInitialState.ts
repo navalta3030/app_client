@@ -1,10 +1,9 @@
-import { AccountStateInterface } from "_interface/reducer/ReducerStateInterface";
+import { AccountStateInterface } from "_interface/action_reducer/Account/AccountStateInterface";
 
 const AccountInitialState: AccountStateInterface = {
-  user: {
-    name: "",
-    data: []
-  },
+  name: "",
+  email: "",
+  data: null,
   isAuthenticated: false
 };
 

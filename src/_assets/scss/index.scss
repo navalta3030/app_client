@@ -1,3 +1,7 @@
+html, body {
+  height: 100vh;
+}
+
 // Component
 @import "component/banner.scss";
 @import "component/ImageUploadComponent.scss";
@@ -8,3 +12,4 @@
 
 // Views
 @import "views/home/vh_index.scss";
+@import "views/home/vh_homelogin.scss";

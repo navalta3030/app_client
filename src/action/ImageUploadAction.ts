@@ -1,24 +1,25 @@
 import {
-  ONDROP,
+  ONCHANGE,
   ImageUploadActionTypes,
-  ONREMOVE
-} from "_interface/action/ImageUpload/ImageUploadActionInterface";
+  ONSENDTOSERVER
+} from "_interface/action_reducer/ImageUpload/ImageUploadActionTypesInterface";
 import {
-  PayLoadOnDropInterface,
-  PayLoadOnRemoveInterface
-} from "_interface/action/ImageUpload/ImageUploadActionPayloadInterface";
+  ImageUploadCollectionStateInterface,
+  ImageUploadApiResponseStateInterface
+} from "_interface/action_reducer/ImageUpload/ImageUploadStateInterface";
+import { callApiPostFormData } from "_utils/CallApi";
 
-export const OnDrop = (
-  payload: PayLoadOnDropInterface
+export const OnChange = (
+  payload: ImageUploadCollectionStateInterface
 ): ImageUploadActionTypes => ({
-  type: ONDROP,
+  type: ONCHANGE,
   payload: payload
 });
 
-export const OnRemove = (
-  payload: PayLoadOnRemoveInterface
+export const OnSendToServer = (
+  payload: ImageUploadApiResponseStateInterface
 ): ImageUploadActionTypes => ({
-  type: ONREMOVE,
+  type: ONSENDTOSERVER,
   payload: payload
 });
 
@@ -30,24 +31,24 @@ export const OnRemove = (
  * @param pictureFiles - collection of array of files
  * @param pictureDataURLs - collection of array of base64string images
  */
-export const ImageUploadOnDrop = (
+export const ImageCollectionOnChange = (
   pictureFiles: File[],
   pictureDataURLs: string[]
 ) => (dispatch: any): any => {
-  dispatch(OnDrop({ pictureFiles, pictureDataURLs }));
+  dispatch(OnChange({ pictureFiles, pictureDataURLs }));
 };
 
-/**
- * Function whenever removes a photo prior to upload.
- * used in {@link "Component/ImageUploadComponent.tsx"}
- * source library - {@link https://github.com/JakeHartnell/react-images-upload}
- *
- * @param pictureFiles - collection of array of files
- * @param pictureDataURLs - collection of array of base64string images
- */
-export const ImageUploadOnRemove = (
-  pictureFiles: File[],
-  pictureDataURLs: string[]
-) => (dispatch: any): any => {
-  dispatch(OnRemove({ pictureFiles, pictureDataURLs }));
+export const ImageOnSendToServer = (pictureFiles: File[]) => (
+  dispatch: any
+): any => {
+  console.log("calling");
+  const ImagePredictionResponse: Promise<ImageUploadApiResponseStateInterface> = callApiPostFormData(
+    "/predictImage",
+    pictureFiles,
+    true
+  );
+
+  ImagePredictionResponse.then(res => {
+    dispatch(OnSendToServer(res));
+  });
 };
