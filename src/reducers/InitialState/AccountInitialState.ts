@@ -1,10 +1,9 @@
-import { AccountStateInterface } from "_interface/reducer/ReducerStateInterface";
+import { PayLoadAccountInterface } from "_interface/action_reducer/Account/AccountActionPayloadInterface";
 
-const AccountInitialState: AccountStateInterface = {
-  user: {
-    name: "",
-    data: []
-  },
+const AccountInitialState: PayLoadAccountInterface = {
+  name: "",
+  email: "",
+  data: null,
   isAuthenticated: false
 };
 

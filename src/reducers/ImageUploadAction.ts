@@ -1,15 +1,15 @@
 import ImageUploadInitialState from "./InitialState/ImageUploadInitialState";
-import { ImageUploadStateInterface } from "_interface/reducer/ReducerStateInterface";
 import {
   ONDROP,
   ImageUploadActionTypes,
   ONREMOVE
-} from "_interface/action/ImageUpload/ImageUploadActionInterface";
+} from "_interface/action_reducer/ImageUpload/ImageUploadActionInterface";
+import { PayloadImageInterface } from "_interface/action_reducer/ImageUpload/ImageUploadActionPayloadInterface";
 
 export const ImageUploadReducer = (
   state = ImageUploadInitialState,
   action: ImageUploadActionTypes
-): ImageUploadStateInterface => {
+): PayloadImageInterface => {
   switch (action.type) {
     case ONDROP:
       return Object.assign({}, state, {

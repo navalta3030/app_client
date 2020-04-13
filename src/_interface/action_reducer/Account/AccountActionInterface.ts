@@ -1,7 +1,6 @@
 import {
-  PayLoadLoginInterface,
-  PayLoadLogOutInterface,
-  PayLoadValidateAuthenticationInterface
+  PayLoadAccountInterface,
+  PayloadAuthenticationInterface
 } from "./AccountActionPayloadInterface";
 
 export const LOGOUT = "LOGOUT";
@@ -10,17 +9,17 @@ export const VALIDATEAUTHENTICATION = "VALIDATEAUTHENTICATION";
 
 export interface AccountLoginInterface {
   type: typeof LOGIN;
-  payload: PayLoadLoginInterface;
+  payload: PayLoadAccountInterface;
 }
 
 export interface AccountLogOutInterface {
   type: typeof LOGOUT;
-  payload: PayLoadLogOutInterface;
+  payload: PayloadAuthenticationInterface;
 }
 
 export interface AccountValidateAuthenticationInterface {
   type: typeof VALIDATEAUTHENTICATION;
-  payload: PayLoadValidateAuthenticationInterface;
+  payload: PayloadAuthenticationInterface;
 }
 
 export type AccountActionTypes =

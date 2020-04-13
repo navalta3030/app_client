@@ -2,21 +2,18 @@ import {
   ONDROP,
   ImageUploadActionTypes,
   ONREMOVE
-} from "_interface/action/ImageUpload/ImageUploadActionInterface";
-import {
-  PayLoadOnDropInterface,
-  PayLoadOnRemoveInterface
-} from "_interface/action/ImageUpload/ImageUploadActionPayloadInterface";
+} from "_interface/action_reducer/ImageUpload/ImageUploadActionInterface";
+import { PayloadImageInterface } from "_interface/action_reducer/ImageUpload/ImageUploadActionPayloadInterface";
 
 export const OnDrop = (
-  payload: PayLoadOnDropInterface
+  payload: PayloadImageInterface
 ): ImageUploadActionTypes => ({
   type: ONDROP,
   payload: payload
 });
 
 export const OnRemove = (
-  payload: PayLoadOnRemoveInterface
+  payload: PayloadImageInterface
 ): ImageUploadActionTypes => ({
   type: ONREMOVE,
   payload: payload
