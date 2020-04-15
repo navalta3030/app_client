@@ -1,8 +1,0 @@
-language: node_js
-node_js:
-  - 12
-
-services:
-  - docker
-script:
-  - docker build -t navalta3030/react-client . 
