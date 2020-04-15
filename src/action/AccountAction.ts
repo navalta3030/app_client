@@ -50,13 +50,14 @@ export const UserLogin = (responseFromGoogle: any) => (dispatch: any): any => {
   const Email: string = responseFromGoogle.profileObj.email;
 
   // pass the user information from google to server to obtain jwt token
-  const loginApiEresponse: LoginApiResponseInterface = callApiPost(
+  const loginApiEresponse: Promise<LoginApiResponseInterface> = callApiPost(
     "/token",
     { Name, Email },
     false
   );
-
-  setJWT(loginApiEresponse.access_token);
+  loginApiEresponse.then(res => {
+    setJWT(res.access_token);
+  });
 
   dispatch(
     Login({
