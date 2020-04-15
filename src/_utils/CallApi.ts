@@ -22,21 +22,28 @@ const callApiGet = (endpoint: string, secured: boolean): void => {
 /**
  * Description - @PostApi helper
  */
-const callApiPost = (endpoint: string, data: any, secured: boolean): any => {
+const callApiPost = async (
+  endpoint: string,
+  data: any,
+  secured: boolean
+): Promise<any> => {
   // const url = API_SERVER + endpoint;
   const url = endpoint;
   const headers = {};
+  let retval;
 
   if (secured) {
     headers["Authorization"] = "Bearer " + getJWT();
   }
-  console.log(data);
-  return axios
+
+  await axios
     .post(url, data, { headers })
     .then(res => {
-      return res.data;
+      retval = res.data;
     })
     .catch(err => console.log(err));
+
+  return retval;
 };
 
 export { callApiGet, callApiPost };
