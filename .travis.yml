@@ -1,19 +1,8 @@
 language: node_js
 node_js:
   - 12
-cache:
-  directories:
-    - node_modules
+
+services:
+  - docker
 script:
-  - npm test
-  - npm run build
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  local_dir: build
-  fqdn: react.marknavalta.com
-  on:
-    branch: master
-on:
-  branch: master
+  - docker build -t navalta3030/react-client . 
