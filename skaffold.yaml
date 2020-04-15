@@ -10,4 +10,4 @@ build:
 deploy:
   kubectl:
     manifests:
-      - k8/react-*
+      - react-client-chart/templates/react-*
