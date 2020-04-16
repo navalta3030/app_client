@@ -36,7 +36,8 @@ jobs:
         ./get_helm.sh
     
     - name: Deploy 
-      run: helm install react-client ./react-client-chart && helm upgrade react-client ./react-client-chart
+      run: helm upgrade --install react-client ./react-client-chart
+
 
     - name: Get nodes
       run: kubectl get nodes
