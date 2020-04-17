@@ -2,14 +2,14 @@ import {
   LOGIN,
   LOGOUT,
   AccountActionTypes
-} from "_interface/action_reducer/Account/AccountActionInterface";
+} from "_interface/action_reducer/Account/AccountActionTypesInterface";
 import AccountInitialState from "./InitialState/AccountInitialState";
-import { PayLoadAccountInterface } from "_interface/action_reducer/Account/AccountActionPayloadInterface";
+import { AccountStateInterface } from "_interface/action_reducer/Account/AccountStateInterface";
 
 export const AccountReducer = (
   state = AccountInitialState,
   action: AccountActionTypes
-): PayLoadAccountInterface => {
+): AccountStateInterface => {
   switch (action.type) {
     case LOGIN:
       return Object.assign({}, state, {

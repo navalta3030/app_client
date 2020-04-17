@@ -1,49 +1,78 @@
 import axios from "axios";
 
 import { getJWT } from "_utils/JwtHandler";
-import { API_SERVER } from "_utils/ConstantVariables";
+import { UserAlertManualDispatch } from "action/AlertAction";
+import { store } from "app";
 
 /**
  * Description - @GetApi helper
  */
-const callApiGet = (endpoint: string, secured: boolean): void => {
-  const url = API_SERVER + endpoint;
+const callApiGet = (endpoint: string, secured: boolean): Promise<any> => {
   const headers = {};
 
   if (secured) {
     headers["Authorization"] = "Bearer " + getJWT();
   }
-  axios
-    .get(url, { headers })
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+  return axios
+    .get(endpoint, { headers })
+    .then(res => {
+      return res.data;
+    })
+    .catch(err => {
+      return err.response;
+    });
 };
 
 /**
  * Description - @PostApi helper
  */
-const callApiPost = async (
+const callApiPost = (
   endpoint: string,
   data: any,
   secured: boolean
 ): Promise<any> => {
-  // const url = API_SERVER + endpoint;
-  const url = endpoint;
   const headers = {};
-  let retval;
 
   if (secured) {
     headers["Authorization"] = "Bearer " + getJWT();
   }
 
-  await axios
-    .post(url, data, { headers })
+  return axios
+    .post(endpoint, data, { headers })
     .then(res => {
-      retval = res.data;
+      return res.data;
     })
-    .catch(err => console.log(err));
-
-  return retval;
+    .catch(err => {
+      console.log(err);
+      store.dispatch(UserAlertManualDispatch("Unable to login" + err));
+    });
 };
 
-export { callApiGet, callApiPost };
+/**
+ * Description - @PostApiForm helper for sending images/blobs and any form of files
+ */
+const callApiPostFormData = (
+  endpoint: string,
+  data: File[],
+  secured: boolean
+): Promise<any> => {
+  const formData = new FormData();
+  const headers = {};
+
+  if (secured) {
+    headers["Authorization"] = "Bearer " + getJWT();
+  }
+
+  data.forEach((item: File) => formData.append("file", item));
+
+  return axios
+    .post(endpoint, formData, { headers })
+    .then(res => {
+      return res.data;
+    })
+    .catch(err => {
+      return err.response;
+    });
+};
+
+export { callApiGet, callApiPost, callApiPostFormData };

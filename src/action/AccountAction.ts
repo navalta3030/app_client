@@ -4,35 +4,34 @@ import {
   LOGOUT,
   VALIDATEAUTHENTICATION,
   AccountActionTypes
-} from "_interface/action_reducer/Account/AccountActionInterface";
+} from "_interface/action_reducer/Account/AccountActionTypesInterface";
 import {
-  PayLoadAccountInterface,
-  PayloadAuthenticationInterface
-} from "_interface/action_reducer/Account/AccountActionPayloadInterface";
+  AccountStateInterface,
+  AuthenticationStateInterface,
+  LoginApiResponseStateInterface
+} from "_interface/action_reducer/Account/AccountStateInterface";
 
 // custom imports
 import History from "_utils/History";
 import { validateToken } from "../_utils/validateToken";
 import { setJWT, deleteJWT, getJWT } from "_utils/JwtHandler";
 import { callApiPost } from "_utils/CallApi";
-import { LoginApiResponseInterface } from "_interface/api/LoginApiResponseInterface";
+import { UserAlert } from "./AlertAction";
 
-export const Login = (
-  payload: PayLoadAccountInterface
-): AccountActionTypes => ({
+export const Login = (payload: AccountStateInterface): AccountActionTypes => ({
   type: LOGIN,
   payload: payload
 });
 
 export const LogOut = (
-  payload: PayloadAuthenticationInterface
+  payload: AuthenticationStateInterface
 ): AccountActionTypes => ({
   type: LOGOUT,
   payload: payload
 });
 
 export const ValidateAuthentication = (
-  payload: PayloadAuthenticationInterface
+  payload: AuthenticationStateInterface
 ): AccountActionTypes => ({
   type: VALIDATEAUTHENTICATION,
   payload: payload
@@ -50,25 +49,32 @@ export const UserLogin = (responseFromGoogle: any) => (dispatch: any): any => {
   const Email: string = responseFromGoogle.profileObj.email;
 
   // pass the user information from google to server to obtain jwt token
-  const loginApiEresponse: Promise<LoginApiResponseInterface> = callApiPost(
+  const loginApiEresponse: Promise<LoginApiResponseStateInterface> = callApiPost(
     "/token",
     { Name, Email },
     false
   );
-  loginApiEresponse.then(res => {
-    setJWT(res.access_token);
-  });
 
-  dispatch(
-    Login({
-      name: Name,
-      email: Email,
-      data: "test_data",
-      isAuthenticated: true
+  loginApiEresponse
+    .then(res => {
+      if (res.access_token != null) {
+        setJWT(res.access_token);
+
+        dispatch(
+          Login({
+            name: Name,
+            email: Email,
+            data: "test_data",
+            isAuthenticated: true
+          })
+        );
+
+        History.push("/");
+      }
     })
-  );
-
-  History.push("/");
+    .catch(err => {
+      UserAlert(err);
+    });
 };
 
 /**

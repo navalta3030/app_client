@@ -1,8 +1,18 @@
-import { PayloadImageInterface } from "_interface/action_reducer/ImageUpload/ImageUploadActionPayloadInterface";
+import {
+  ImageUploadCollectionStateInterface,
+  ImageUploadApiResponseStateInterface
+} from "_interface/action_reducer/ImageUpload/ImageUploadStateInterface";
 
-const ImageUploadInitialState: PayloadImageInterface = {
+const ImageUploadCollectionInitialState: ImageUploadCollectionStateInterface = {
   pictureFiles: [],
   pictureDataURLs: []
 };
 
-export default ImageUploadInitialState;
+const ImageUploadApiResponseInitialState: ImageUploadApiResponseStateInterface = {
+  //      filename, label, percentage
+  data: [["", "", 0]]
+};
+export {
+  ImageUploadCollectionInitialState,
+  ImageUploadApiResponseInitialState
+};

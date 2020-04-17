@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDom from "react-dom";
 import ImageUploadComponent from "component/ImageUploadComponent";
-import ImageUploadInitialState from "reducers/InitialState/ImageUploadInitialState";
+import ImageUploadCollectionInitialState from "reducers/InitialState/ImageUploadInitialState";
 import {
-  ImageUploadOnDrop,
-  ImageUploadOnRemove
+  ImageCollectionOnDrop,
+  ImageCollectionOnRemove
 } from "action/ImageUploadAction";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
@@ -14,10 +14,10 @@ import { rootReducer } from "ReduxStore";
 it("renders linechart component without crashing", () => {
   const div = document.createElement("div");
   const props = {
-    ...ImageUploadInitialState,
+    ...ImageUploadCollectionInitialState,
     dispatch: jest.fn(),
-    ImageUploadOnDrop: ImageUploadOnDrop,
-    ImageUploadOnRemove: ImageUploadOnRemove
+    ImageUploadOnDrop: ImageCollectionOnDrop,
+    ImageUploadOnRemove: ImageCollectionOnRemove
   };
 
   const store = createStore(rootReducer);

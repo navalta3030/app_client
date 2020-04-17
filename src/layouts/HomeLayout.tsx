@@ -13,6 +13,9 @@ import {
 // custom imports
 import routes from "layouts/routes/HomeRoutes";
 import routeInterface from "_interface/RoutesInterface";
+import AlertComponent from "component/helpers/AlertComponent";
+import AlertInitialState from "reducers/InitialState/AlertInitialState";
+import { UserAlert } from "action/AlertAction";
 
 const LOGIN_LINK = "/login";
 
@@ -53,6 +56,11 @@ class HomeLayout extends React.Component {
             </NavLink>
           </Navbar>
         </div>
+
+        <AlertComponent
+          {...AlertInitialState}
+          UserAlert={UserAlert}
+        ></AlertComponent>
 
         <div className="main-content">
           <Container>

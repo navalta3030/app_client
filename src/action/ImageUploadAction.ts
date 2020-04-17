@@ -1,21 +1,33 @@
 import {
   ONDROP,
   ImageUploadActionTypes,
-  ONREMOVE
-} from "_interface/action_reducer/ImageUpload/ImageUploadActionInterface";
-import { PayloadImageInterface } from "_interface/action_reducer/ImageUpload/ImageUploadActionPayloadInterface";
+  ONREMOVE,
+  ONSENDTOSERVER
+} from "_interface/action_reducer/ImageUpload/ImageUploadActionTypesInterface";
+import {
+  ImageUploadCollectionStateInterface,
+  ImageUploadApiResponseStateInterface
+} from "_interface/action_reducer/ImageUpload/ImageUploadStateInterface";
+import { callApiPostFormData } from "_utils/CallApi";
 
 export const OnDrop = (
-  payload: PayloadImageInterface
+  payload: ImageUploadCollectionStateInterface
 ): ImageUploadActionTypes => ({
   type: ONDROP,
   payload: payload
 });
 
 export const OnRemove = (
-  payload: PayloadImageInterface
+  payload: ImageUploadCollectionStateInterface
 ): ImageUploadActionTypes => ({
   type: ONREMOVE,
+  payload: payload
+});
+
+export const OnSendToServer = (
+  payload: ImageUploadApiResponseStateInterface
+): ImageUploadActionTypes => ({
+  type: ONSENDTOSERVER,
   payload: payload
 });
 
@@ -27,7 +39,7 @@ export const OnRemove = (
  * @param pictureFiles - collection of array of files
  * @param pictureDataURLs - collection of array of base64string images
  */
-export const ImageUploadOnDrop = (
+export const ImageCollectionOnDrop = (
   pictureFiles: File[],
   pictureDataURLs: string[]
 ) => (dispatch: any): any => {
@@ -42,9 +54,23 @@ export const ImageUploadOnDrop = (
  * @param pictureFiles - collection of array of files
  * @param pictureDataURLs - collection of array of base64string images
  */
-export const ImageUploadOnRemove = (
+export const ImageCollectionOnRemove = (
   pictureFiles: File[],
   pictureDataURLs: string[]
 ) => (dispatch: any): any => {
   dispatch(OnRemove({ pictureFiles, pictureDataURLs }));
+};
+
+export const ImageOnSendToServer = (pictureFiles: File[]) => (
+  dispatch: any
+): any => {
+  const ImagePredictionResponse: Promise<ImageUploadApiResponseStateInterface> = callApiPostFormData(
+    "/api/predictImage",
+    pictureFiles,
+    true
+  );
+
+  ImagePredictionResponse.then(res => {
+    dispatch(OnSendToServer(res));
+  });
 };

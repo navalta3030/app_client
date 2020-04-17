@@ -6,8 +6,8 @@ import { RootState } from "ReduxStore";
 // custom imports
 import { UserLogin } from "action/AccountAction";
 import { GOOGLE_CLIENT_ID } from "_utils/ConstantVariables";
-import { LoginApiResponseInterface } from "_interface/api/LoginApiResponseInterface";
 import HomeLoginComponentInterface from "_interface/component/HomeLoginComponentInterface";
+import { LoginApiResponseStateInterface } from "_interface/action_reducer/Account/AccountStateInterface";
 
 const HomeLoginComponent: React.FC<HomeLoginComponentInterface> = ({
   UserLogin
@@ -17,14 +17,15 @@ const HomeLoginComponent: React.FC<HomeLoginComponentInterface> = ({
       clientId={GOOGLE_CLIENT_ID}
       buttonText="Sign In with Google"
       onSuccess={UserLogin}
-      onFailure={(): any => alert("Failed to login using google oauth2")}
+      onFailure={(): any => alert("Failed to login using google account")}
+      className="GoogleLoginStyle"
     />
   );
 };
 
 const mapDispatchToProps = (dispatch: any): any => {
   return {
-    UserLogin: (response: LoginApiResponseInterface): any => {
+    UserLogin: (response: LoginApiResponseStateInterface): any => {
       dispatch(UserLogin(response));
     }
   };

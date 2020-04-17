@@ -1,13 +1,15 @@
 import * as React from "react";
-import { Container } from "reactstrap";
+import { Container, Button } from "reactstrap";
 import { connect } from "react-redux";
 import ImageUploader from "react-images-upload";
 import FlipMove from "react-flip-move";
+import _ from "lodash";
 
 // custom imports
 import {
-  ImageUploadOnDrop,
-  ImageUploadOnRemove
+  ImageCollectionOnDrop,
+  ImageCollectionOnRemove,
+  ImageOnSendToServer
 } from "action/ImageUploadAction";
 import { RootState } from "ReduxStore";
 import ImageUploadComponentInterface from "_interface/component/ImageUploadComponentInterface";
@@ -18,8 +20,9 @@ const AllowedImageExtension: string[] = ALLOWED_IMAGE_EXTENSIONS;
 const ImageUploadComponent: React.FC<ImageUploadComponentInterface> = ({
   pictureDataURLs,
   pictureFiles,
-  ImageUploadOnDrop,
-  ImageUploadOnRemove
+  ImageCollectionOnDrop,
+  ImageCollectionOnRemove,
+  ImageOnSendToServer
 }): React.ReactElement => {
   /**
    *  Filters the image on the array list collection by index and deletes it.
@@ -34,7 +37,7 @@ const ImageUploadComponent: React.FC<ImageUploadComponentInterface> = ({
       (e, index) => index !== removeIndex
     );
 
-    ImageUploadOnRemove(filteredFiles, filteredPictures);
+    ImageCollectionOnRemove(filteredFiles, filteredPictures);
   };
 
   /**
@@ -63,7 +66,7 @@ const ImageUploadComponent: React.FC<ImageUploadComponentInterface> = ({
         <ImageUploader
           withIcon={true}
           buttonText="Choose images"
-          onChange={ImageUploadOnDrop}
+          onChange={ImageCollectionOnDrop}
           imgExtension={AllowedImageExtension}
           maxFileSize={10242880}
         ></ImageUploader>
@@ -75,6 +78,15 @@ const ImageUploadComponent: React.FC<ImageUploadComponentInterface> = ({
           >
             {renderPreviewPictures()}
           </FlipMove>
+
+          {_.isEmpty(pictureDataURLs) ? (
+            <Button
+              color="secondary"
+              onClick={(): any => ImageOnSendToServer(pictureFiles)}
+            >
+              Submit
+            </Button>
+          ) : null}
         </div>
       </Container>
     </div>
@@ -83,17 +95,20 @@ const ImageUploadComponent: React.FC<ImageUploadComponentInterface> = ({
 
 const mapDispatchToProps = (dispatch: any): any => {
   return {
-    ImageUploadOnDrop: (
+    ImageCollectionOnDrop: (
       pictureFiles: File[],
       pictureDataURLs: string[]
     ): any => {
-      dispatch(ImageUploadOnDrop(pictureFiles, pictureDataURLs));
+      dispatch(ImageCollectionOnDrop(pictureFiles, pictureDataURLs));
     },
-    ImageUploadOnRemove: (
+    ImageCollectionOnRemove: (
       pictureFiles: File[],
       pictureDataURLs: string[]
     ): any => {
-      dispatch(ImageUploadOnRemove(pictureFiles, pictureDataURLs));
+      dispatch(ImageCollectionOnRemove(pictureFiles, pictureDataURLs));
+    },
+    ImageOnSendToServer: (pictureFiles: File[]): any => {
+      dispatch(ImageOnSendToServer(pictureFiles));
     }
   };
 };
