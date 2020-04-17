@@ -22,7 +22,7 @@ import { UserAlert } from "action/AlertAction";
 
 class AuthenticatedLayout extends React.Component<
   AuthenticatedLayoutInterface
-  > {
+> {
   getRoutes = (routes: routeInterface[]): any => {
     return routes.map((prop, key) => {
       return <Route exact path={prop.path} component={prop.view} key={key} />;
