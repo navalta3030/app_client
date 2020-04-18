@@ -4,8 +4,7 @@ import * as React from "react";
 import ImageUploadComponent from "component/ImageUploadComponent";
 import { ImageUploadCollectionInitialState } from "reducers/InitialState/ImageUploadInitialState";
 import {
-  ImageCollectionOnDrop,
-  ImageCollectionOnRemove,
+  ImageCollectionOnChange,
   ImageOnSendToServer
 } from "action/ImageUploadAction";
 
@@ -15,8 +14,7 @@ export default class ViewsAuthenticatedImageUpload extends React.Component {
       <div>
         <ImageUploadComponent
           {...ImageUploadCollectionInitialState}
-          ImageCollectionOnDrop={ImageCollectionOnDrop}
-          ImageCollectionOnRemove={ImageCollectionOnRemove}
+          ImageCollectionOnChange={ImageCollectionOnChange}
           ImageOnSendToServer={ImageOnSendToServer}
         ></ImageUploadComponent>
       </div>

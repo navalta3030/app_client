@@ -12,7 +12,7 @@ export const rootReducer = combineReducers({
   account: AccountReducer,
   imageUpload: ImageUploadReducer,
   imageUploadApiResponse: ImageUploadApiResponseReducer,
-  Alert: AlertReducer
+  alert: AlertReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

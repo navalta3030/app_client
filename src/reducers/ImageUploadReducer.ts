@@ -3,9 +3,8 @@ import {
   ImageUploadApiResponseInitialState
 } from "./InitialState/ImageUploadInitialState";
 import {
-  ONDROP,
+  ONCHANGE,
   ImageUploadActionTypes,
-  ONREMOVE,
   ONSENDTOSERVER
 } from "_interface/action_reducer/ImageUpload/ImageUploadActionTypesInterface";
 import {
@@ -18,13 +17,7 @@ export const ImageUploadReducer = (
   action: ImageUploadActionTypes
 ): ImageUploadCollectionStateInterface => {
   switch (action.type) {
-    case ONDROP:
-      return Object.assign({}, state, {
-        ...state,
-        pictureFiles: action.payload.pictureFiles,
-        pictureDataURLs: action.payload.pictureDataURLs
-      });
-    case ONREMOVE:
+    case ONCHANGE:
       return Object.assign({}, state, {
         ...state,
         pictureFiles: action.payload.pictureFiles,

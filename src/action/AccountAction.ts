@@ -10,6 +10,7 @@ import {
   AuthenticationStateInterface,
   LoginApiResponseStateInterface
 } from "_interface/action_reducer/Account/AccountStateInterface";
+import process from "process";
 
 // custom imports
 import History from "_utils/History";
@@ -17,6 +18,7 @@ import { validateToken } from "../_utils/validateToken";
 import { setJWT, deleteJWT, getJWT } from "_utils/JwtHandler";
 import { callApiPost } from "_utils/CallApi";
 import { UserAlert } from "./AlertAction";
+import LogInDev from "./DevelopmentFunctionHelpers/LoginDev";
 
 export const Login = (payload: AccountStateInterface): AccountActionTypes => ({
   type: LOGIN,
@@ -48,33 +50,37 @@ export const UserLogin = (responseFromGoogle: any) => (dispatch: any): any => {
   const Name: string = responseFromGoogle.profileObj.name;
   const Email: string = responseFromGoogle.profileObj.email;
 
-  // pass the user information from google to server to obtain jwt token
-  const loginApiEresponse: Promise<LoginApiResponseStateInterface> = callApiPost(
-    "/token",
-    { Name, Email },
-    false
-  );
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+    LogInDev(dispatch);
+  } else {
+    // pass the user information from google to server to obtain jwt token
+    const loginApiEresponse: Promise<LoginApiResponseStateInterface> = callApiPost(
+      "/token",
+      { Name, Email },
+      false
+    );
+    // time to dispatch
+    loginApiEresponse
+      .then(res => {
+        if (res.access_token != null) {
+          setJWT(res.access_token);
 
-  loginApiEresponse
-    .then(res => {
-      if (res.access_token != null) {
-        setJWT(res.access_token);
+          dispatch(
+            Login({
+              name: Name,
+              email: Email,
+              data: "test_data",
+              isAuthenticated: true
+            })
+          );
 
-        dispatch(
-          Login({
-            name: Name,
-            email: Email,
-            data: "test_data",
-            isAuthenticated: true
-          })
-        );
-
-        History.push("/");
-      }
-    })
-    .catch(err => {
-      UserAlert(err);
-    });
+          History.push("/");
+        }
+      })
+      .catch(err => {
+        UserAlert(err);
+      });
+  }
 };
 
 /**

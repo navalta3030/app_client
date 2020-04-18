@@ -3,17 +3,11 @@ import {
   ImageUploadApiResponseStateInterface
 } from "./ImageUploadStateInterface";
 
-export const ONDROP = "ONDROP";
-export const ONREMOVE = "ONREMOVE";
+export const ONCHANGE = "ONCHANGE";
 export const ONSENDTOSERVER = "ONSENDTOSERVER";
 
-export interface ImageCollectionOnDropActionInterface {
-  type: typeof ONDROP;
-  payload: ImageUploadCollectionStateInterface;
-}
-
-export interface ImageCollectionOnRemoveActionInterface {
-  type: typeof ONREMOVE;
+export interface ImageCollectionOnChangeActionInterface {
+  type: typeof ONCHANGE;
   payload: ImageUploadCollectionStateInterface;
 }
 
@@ -23,6 +17,5 @@ export interface ImageOnSendToServerActionInterface {
 }
 
 export type ImageUploadActionTypes =
-  | ImageCollectionOnRemoveActionInterface
-  | ImageCollectionOnDropActionInterface
+  | ImageCollectionOnChangeActionInterface
   | ImageOnSendToServerActionInterface;

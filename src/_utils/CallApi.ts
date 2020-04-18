@@ -43,8 +43,7 @@ const callApiPost = (
       return res.data;
     })
     .catch(err => {
-      console.log(err);
-      store.dispatch(UserAlertManualDispatch("Unable to login" + err));
+      store.dispatch(UserAlertManualDispatch(err));
     });
 };
 
@@ -68,10 +67,12 @@ const callApiPostFormData = (
   return axios
     .post(endpoint, formData, { headers })
     .then(res => {
+      console.log(res);
       return res.data;
     })
     .catch(err => {
-      return err.response;
+      console.log(err);
+      store.dispatch(UserAlertManualDispatch(err));
     });
 };
 

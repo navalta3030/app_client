@@ -1,6 +1,9 @@
 .ImageUploadPicturesWrapper {
-	
-
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+	height: 50vh;
 
 	.ImageUploadFlipMove {
     display: flex;
@@ -8,9 +11,10 @@
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
-  }
+	}
+	
 	.uploadPictureContainer {
-		width: 15%;
+		width: 20%;
 		margin: 5%;
 		padding: 10px;
 		background: #edf2f6;

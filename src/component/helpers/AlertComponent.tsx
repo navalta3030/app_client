@@ -42,8 +42,8 @@ const mapDispatchToProps = (dispatch: any): any => {
 };
 
 const mapStateToProps = (state: RootState): any => ({
-  message: state.Alert.message,
-  isOpen: state.Alert.isOpen
+  message: state.alert.message,
+  isOpen: state.alert.isOpen
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AlertComponent);

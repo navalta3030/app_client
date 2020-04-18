@@ -2,13 +2,11 @@ import * as React from "react";
 import { Container, Button } from "reactstrap";
 import { connect } from "react-redux";
 import ImageUploader from "react-images-upload";
-import FlipMove from "react-flip-move";
 import _ from "lodash";
 
 // custom imports
 import {
-  ImageCollectionOnDrop,
-  ImageCollectionOnRemove,
+  ImageCollectionOnChange,
   ImageOnSendToServer
 } from "action/ImageUploadAction";
 import { RootState } from "ReduxStore";
@@ -20,66 +18,22 @@ const AllowedImageExtension: string[] = ALLOWED_IMAGE_EXTENSIONS;
 const ImageUploadComponent: React.FC<ImageUploadComponentInterface> = ({
   pictureDataURLs,
   pictureFiles,
-  ImageCollectionOnDrop,
-  ImageCollectionOnRemove,
+  ImageCollectionOnChange,
   ImageOnSendToServer
 }): React.ReactElement => {
-  /**
-   *  Filters the image on the array list collection by index and deletes it.
-   *  reference : {@link https://github.com/JakeHartnell/react-images-upload/blob/master/src/component/index.js}
-   */
-  const removeImage = (picture: string): void => {
-    const removeIndex = pictureDataURLs.findIndex(e => e === picture);
-    const filteredPictures = pictureDataURLs.filter(
-      (e, index) => index !== removeIndex
-    );
-    const filteredFiles = pictureFiles.filter(
-      (e, index) => index !== removeIndex
-    );
-
-    ImageCollectionOnRemove(filteredFiles, filteredPictures);
-  };
-
-  /**
-   *  After User uploads image, this function will render the images.
-   *  reference : {@link https://github.com/JakeHartnell/react-images-upload/blob/master/src/component/index.js}
-   */
-  const renderPreviewPictures = (): React.ReactElement[] => {
-    return pictureDataURLs.map((picture, index) => {
-      return (
-        <div key={index} className="uploadPictureContainer">
-          <div
-            className="deleteImage"
-            onClick={(): void => removeImage(picture)}
-          >
-            X
-          </div>
-          <img src={picture} className="uploadPicture" alt="preview" />
-        </div>
-      );
-    });
-  };
-
   return (
     <div>
       <Container fluid={true}>
         <ImageUploader
           withIcon={true}
           buttonText="Choose images"
-          onChange={ImageCollectionOnDrop}
+          onChange={ImageCollectionOnChange}
           imgExtension={AllowedImageExtension}
           maxFileSize={10242880}
+          withPreview={true}
         ></ImageUploader>
         <div className="ImageUploadPicturesWrapper">
-          <FlipMove
-            enterAnimation="fade"
-            leaveAnimation="fade"
-            className="ImageUploadFlipMove"
-          >
-            {renderPreviewPictures()}
-          </FlipMove>
-
-          {_.isEmpty(pictureDataURLs) ? (
+          {!_.isEmpty(pictureDataURLs) ? (
             <Button
               color="secondary"
               onClick={(): any => ImageOnSendToServer(pictureFiles)}
@@ -95,17 +49,11 @@ const ImageUploadComponent: React.FC<ImageUploadComponentInterface> = ({
 
 const mapDispatchToProps = (dispatch: any): any => {
   return {
-    ImageCollectionOnDrop: (
+    ImageCollectionOnChange: (
       pictureFiles: File[],
       pictureDataURLs: string[]
     ): any => {
-      dispatch(ImageCollectionOnDrop(pictureFiles, pictureDataURLs));
-    },
-    ImageCollectionOnRemove: (
-      pictureFiles: File[],
-      pictureDataURLs: string[]
-    ): any => {
-      dispatch(ImageCollectionOnRemove(pictureFiles, pictureDataURLs));
+      dispatch(ImageCollectionOnChange(pictureFiles, pictureDataURLs));
     },
     ImageOnSendToServer: (pictureFiles: File[]): any => {
       dispatch(ImageOnSendToServer(pictureFiles));
