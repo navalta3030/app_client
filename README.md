@@ -1,4 +1,4 @@
-## Overview ![CI](https://github.com/navalta3030/react_client/workflows/CI/badge.svg)
+## Overview ![Production](https://github.com/navalta3030/react_client/workflows/Production/badge.svg) ![Staging](https://github.com/navalta3030/react_client/workflows/Staging/badge.svg)
 - The goal of this application is to be a web applciation to detect x-ray images you uploaded and recommend foods to eat IF you have a 
 disease.
   - For example, you have an alergy. Then it will recommend Anti-histamin nutricious foods.
