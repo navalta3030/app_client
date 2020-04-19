@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         component: {{ template "react_client_name.fullname" .}}
+        rollme: {{ randAlphaNum 5 | quote }}
     spec:
       containers:
         - name: client
