@@ -1,28 +1,20 @@
 import React from "react";
 import ReactDom from "react-dom";
-import Login from "layouts/views/home/ViewsHomeLogin";
-import { createStore, combineReducers } from "redux";
+import { createStore } from "redux";
 import { Provider } from "react-redux";
-import { AccountReducer } from "reducers/AccountReducers";
+
+// custom import
+import Login from "layouts/views/home/ViewsHomeLogin";
+import { rootReducer } from "ReduxStore";
 
 it("Should render login", () => {
   const div = document.createElement("div");
-  const props = {
-    dispatch: jest.fn(),
-    UserLogin: true,
-    isAuthenticated: false,
-    history: null
-  };
 
-  const store = createStore(
-    combineReducers({
-      account: AccountReducer
-    })
-  );
+  const store = createStore(rootReducer);
 
   ReactDom.render(
     <Provider store={store}>
-      <Login {...props} />
+      <Login />
     </Provider>,
     div
   );

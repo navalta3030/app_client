@@ -2,6 +2,10 @@ html, body {
   height: 100vh;
 }
 
+.main-content  {
+  height: 80vh;
+}
+
 // Component
 @import "component/banner.scss";
 @import "component/ImageUploadComponent.scss";

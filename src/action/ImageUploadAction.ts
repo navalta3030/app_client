@@ -1,25 +1,35 @@
 import {
   ONCHANGE,
   ImageUploadActionTypes,
-  ONSENDTOSERVER
-} from "_interface/action_reducer/ImageUpload/ImageUploadActionTypesInterface";
+  ONSENDTOSERVER,
+  ONREQUESTING
+} from "_interface/ActionReducer/ImageUpload/ImageUploadActionTypesInterface";
 import {
-  ImageUploadCollectionStateInterface,
-  ImageUploadApiResponseStateInterface
-} from "_interface/action_reducer/ImageUpload/ImageUploadStateInterface";
+  ImageUploadCollectionPayloadInterface,
+  ImageUploadApiResponsePayloadInterface,
+  ImageUploadRequestingPayloadInterface
+} from "_interface/ActionReducer/ImageUpload/ImageUploadPayloadInterface";
 import { callApiPostFormData } from "_utils/CallApi";
+import { UserAlert } from "./AlertAction";
 
 export const OnChange = (
-  payload: ImageUploadCollectionStateInterface
+  payload: ImageUploadCollectionPayloadInterface
 ): ImageUploadActionTypes => ({
   type: ONCHANGE,
   payload: payload
 });
 
 export const OnSendToServer = (
-  payload: ImageUploadApiResponseStateInterface
+  payload: ImageUploadApiResponsePayloadInterface
 ): ImageUploadActionTypes => ({
   type: ONSENDTOSERVER,
+  payload: payload
+});
+
+export const onRequesting = (
+  payload: ImageUploadRequestingPayloadInterface
+): ImageUploadActionTypes => ({
+  type: ONREQUESTING,
   payload: payload
 });
 
@@ -38,17 +48,46 @@ export const ImageCollectionOnChange = (
   dispatch(OnChange({ pictureFiles, pictureDataURLs }));
 };
 
+/**
+ * Function that triggers the loading component everytime we send image to the server
+ *
+ * @param pictureFiles - state of component if it's going to be showned
+ */
+export const ImageOnRequesting = (requesting: boolean) => (
+  dispatch: any
+): any => {
+  dispatch(onRequesting({ requesting }));
+};
+
+/**
+ * Function that sends the pictureFiles to the server for prediction
+ * used in {@link "Component/ImageUploadComponent.tsx"}
+ *
+ * @param pictureFiles - collection of array of files
+ */
 export const ImageOnSendToServer = (pictureFiles: File[]) => (
   dispatch: any
 ): any => {
-  console.log("calling");
-  const ImagePredictionResponse: Promise<ImageUploadApiResponseStateInterface> = callApiPostFormData(
-    "/predictImage",
+  // empty the pictures
+  dispatch(ImageCollectionOnChange([], []));
+
+  // turn the screen into loading
+  dispatch(ImageOnRequesting(true));
+
+  const ImagePredictionResponse: Promise<ImageUploadApiResponsePayloadInterface> = callApiPostFormData(
+    "/api/predictImage",
     pictureFiles,
     true
   );
 
   ImagePredictionResponse.then(res => {
-    dispatch(OnSendToServer(res));
+    if (res) {
+      dispatch(OnSendToServer(res));
+    } else {
+      dispatch(UserAlert("Service is currently Unavailable"));
+    }
+
+    // turn the screen into loading
+    dispatch(ImageOnRequesting(false));
   });
 };

@@ -2,10 +2,10 @@ import AlertInitialState from "./InitialState/AlertInitialState";
 import {
   AlertActionTypes,
   ALERT
-} from "_interface/action_reducer/Alert/AlertActionTypesInterface";
-import { AlertStateInterface } from "_interface/action_reducer/Alert/AlertStateInterface";
+} from "_interface/ActionReducer/Alert/AlertActionTypesInterface";
+import { AlertStateInterface } from "_interface/State/AlertStateInterface";
 
-export const AlertReducer = (
+const AlertReducer = (
   state = AlertInitialState,
   action: AlertActionTypes
 ): AlertStateInterface => {
@@ -20,3 +20,5 @@ export const AlertReducer = (
       return state;
   }
 };
+
+export default AlertReducer;

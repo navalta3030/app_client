@@ -15,10 +15,11 @@ import {
 import routeInterface from "_interface/RoutesInterface";
 import { UserLogOut } from "action/AccountAction";
 import routes from "layouts/routes/AuthenticatedRoutes";
-import AuthenticatedLayoutInterface from "_interface/layouts/AuthenticatedLayoutInterface";
-import AlertComponent from "component/helpers/AlertComponent";
+import AuthenticatedLayoutInterface from "_interface/Layout/AuthenticatedLayoutInterface";
+import AlertComponent from "component/Alert/AlertComponent";
 import AlertInitialState from "reducers/InitialState/AlertInitialState";
-import { UserAlert } from "action/AlertAction";
+import { GoogleLogout } from "react-google-login";
+import { GOOGLE_CLIENT_ID } from "_utils/ConstantVariables";
 
 class AuthenticatedLayout extends React.Component<
   AuthenticatedLayoutInterface
@@ -42,6 +43,8 @@ class AuthenticatedLayout extends React.Component<
   };
 
   render(): React.ReactElement {
+    const UserLogout = this.props.UserLogOut;
+
     return (
       <>
         <div className="layout_authenticated">
@@ -54,23 +57,20 @@ class AuthenticatedLayout extends React.Component<
               {this.getNavLinks(routes)}
             </Nav>
 
-            <Nav
-              tag={Link}
-              to={"/"}
-              onClick={(): any => this.props.UserLogOut()}
-            >
-              Log Out
+            <Nav tag={Link} to={"/"}>
+              <GoogleLogout
+                clientId={GOOGLE_CLIENT_ID}
+                buttonText="Logout"
+                onLogoutSuccess={UserLogout}
+              ></GoogleLogout>
             </Nav>
           </Navbar>
         </div>
 
-        <AlertComponent
-          {...AlertInitialState}
-          UserAlert={UserAlert}
-        ></AlertComponent>
+        <AlertComponent {...AlertInitialState}></AlertComponent>
 
         <div className="main-content">
-          <Container>
+          <Container className="h-100">
             <Switch>{this.getRoutes(routes)}</Switch>
           </Container>
         </div>
