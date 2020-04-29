@@ -7,10 +7,10 @@ import thunk, { ThunkMiddleware } from "redux-thunk";
 // custom imports
 import AuthenticatedSwitch from "_utils/AuthenticationSwitch";
 import history from "_utils/History";
-import { AccountActionTypes } from "_interface/action_reducer/Account/AccountActionTypesInterface";
+import { AccountActionTypes } from "_interface/ActionReducer/Account/AccountActionTypesInterface";
 import { rootReducer } from "ReduxStore";
-import { ImageUploadActionTypes } from "_interface/action_reducer/ImageUpload/ImageUploadActionTypesInterface";
-import { AlertActionTypes } from "_interface/action_reducer/Alert/AlertActionTypesInterface";
+import { ImageUploadActionTypes } from "_interface/ActionReducer/ImageUpload/ImageUploadActionTypesInterface";
+import { AlertActionTypes } from "_interface/ActionReducer/Alert/AlertActionTypesInterface";
 
 const store = createStore(
   rootReducer,
@@ -36,4 +36,4 @@ class App extends React.Component {
   }
 }
 
-export { App, store };
+export { App };

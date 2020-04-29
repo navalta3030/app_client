@@ -1,10 +1,12 @@
-import { AlertStateInterface } from "_interface/action_reducer/Alert/AlertStateInterface";
+import { AlertPayloadInterface } from "_interface/ActionReducer/Alert/AlertPayloadInterface";
 import {
   AlertActionInterface,
   ALERT
-} from "_interface/action_reducer/Alert/AlertActionTypesInterface";
+} from "_interface/ActionReducer/Alert/AlertActionTypesInterface";
 
-export const Alert = (payload: AlertStateInterface): AlertActionInterface => ({
+export const Alert = (
+  payload: AlertPayloadInterface
+): AlertActionInterface => ({
   type: ALERT,
   payload: payload
 });

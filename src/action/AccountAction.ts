@@ -4,13 +4,12 @@ import {
   LOGOUT,
   VALIDATEAUTHENTICATION,
   AccountActionTypes
-} from "_interface/action_reducer/Account/AccountActionTypesInterface";
+} from "_interface/ActionReducer/Account/AccountActionTypesInterface";
 import {
-  AccountStateInterface,
-  AuthenticationStateInterface,
-  LoginApiResponseStateInterface
-} from "_interface/action_reducer/Account/AccountStateInterface";
-import process from "process";
+  AccountPayloadInterface,
+  AuthenticationPayloadInterface,
+  LoginApiResponsePayloadInterface
+} from "_interface/ActionReducer/Account/AccountPayloadInterface";
 
 // custom imports
 import History from "_utils/History";
@@ -20,20 +19,22 @@ import { callApiPost } from "_utils/CallApi";
 import { UserAlert } from "./AlertAction";
 import LogInDev from "./DevelopmentFunctionHelpers/LoginDev";
 
-export const Login = (payload: AccountStateInterface): AccountActionTypes => ({
+export const Login = (
+  payload: AccountPayloadInterface
+): AccountActionTypes => ({
   type: LOGIN,
   payload: payload
 });
 
 export const LogOut = (
-  payload: AuthenticationStateInterface
+  payload: AuthenticationPayloadInterface
 ): AccountActionTypes => ({
   type: LOGOUT,
   payload: payload
 });
 
 export const ValidateAuthentication = (
-  payload: AuthenticationStateInterface
+  payload: AuthenticationPayloadInterface
 ): AccountActionTypes => ({
   type: VALIDATEAUTHENTICATION,
   payload: payload
@@ -50,11 +51,12 @@ export const UserLogin = (responseFromGoogle: any) => (dispatch: any): any => {
   const Name: string = responseFromGoogle.profileObj.name;
   const Email: string = responseFromGoogle.profileObj.email;
 
+  // eslint-disable-next-line no-undef
   if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
     LogInDev(dispatch);
   } else {
     // pass the user information from google to server to obtain jwt token
-    const loginApiEresponse: Promise<LoginApiResponseStateInterface> = callApiPost(
+    const loginApiEresponse: Promise<LoginApiResponsePayloadInterface> = callApiPost(
       "/token",
       { Name, Email },
       false
@@ -62,7 +64,7 @@ export const UserLogin = (responseFromGoogle: any) => (dispatch: any): any => {
     // time to dispatch
     loginApiEresponse
       .then(res => {
-        if (res.access_token != null) {
+        if (res) {
           setJWT(res.access_token);
 
           dispatch(
@@ -78,7 +80,7 @@ export const UserLogin = (responseFromGoogle: any) => (dispatch: any): any => {
         }
       })
       .catch(err => {
-        UserAlert(err);
+        UserAlert("Service is currently unavailable : " + err);
       });
   }
 };

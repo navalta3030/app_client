@@ -1,21 +1,17 @@
 import {
-  ImageUploadCollectionInitialState,
-  ImageUploadApiResponseInitialState
-} from "./InitialState/ImageUploadInitialState";
-import {
   ONCHANGE,
   ImageUploadActionTypes,
-  ONSENDTOSERVER
-} from "_interface/action_reducer/ImageUpload/ImageUploadActionTypesInterface";
-import {
-  ImageUploadCollectionStateInterface,
-  ImageUploadApiResponseStateInterface
-} from "_interface/action_reducer/ImageUpload/ImageUploadStateInterface";
+  ONSENDTOSERVER,
+  ONREQUESTING
+} from "_interface/ActionReducer/ImageUpload/ImageUploadActionTypesInterface";
 
-export const ImageUploadReducer = (
-  state = ImageUploadCollectionInitialState,
+import ImageUploadInitialState from "./InitialState/ImageUploadInitialState";
+import ImageUploadMainStateInterface from "_interface/State/ImageUpload/ImageUploadMainStateInterface";
+
+const ImageUploadReducer = (
+  state = ImageUploadInitialState,
   action: ImageUploadActionTypes
-): ImageUploadCollectionStateInterface => {
+): ImageUploadMainStateInterface => {
   switch (action.type) {
     case ONCHANGE:
       return Object.assign({}, state, {
@@ -23,22 +19,19 @@ export const ImageUploadReducer = (
         pictureFiles: action.payload.pictureFiles,
         pictureDataURLs: action.payload.pictureDataURLs
       });
-    default:
-      return state;
-  }
-};
-
-export const ImageUploadApiResponseReducer = (
-  state = ImageUploadApiResponseInitialState,
-  action: ImageUploadActionTypes
-): ImageUploadApiResponseStateInterface => {
-  switch (action.type) {
     case ONSENDTOSERVER:
       return Object.assign({}, state, {
         ...state,
         data: action.payload.data
       });
+    case ONREQUESTING:
+      return Object.assign({}, state, {
+        ...state,
+        requesting: action.payload.requesting
+      });
     default:
       return state;
   }
 };
+
+export default ImageUploadReducer;

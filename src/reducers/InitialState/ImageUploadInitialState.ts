@@ -1,18 +1,18 @@
 import {
-  ImageUploadCollectionStateInterface,
-  ImageUploadApiResponseStateInterface
-} from "_interface/action_reducer/ImageUpload/ImageUploadStateInterface";
+  ImageCollectionOnChange,
+  ImageOnSendToServer
+} from "action/ImageUploadAction";
+import ImageUploadMainStateInterface from "_interface/State/ImageUpload/ImageUploadMainStateInterface";
+import { useDispatch } from "react-redux";
 
-const ImageUploadCollectionInitialState: ImageUploadCollectionStateInterface = {
+const ImageUploadInitialState: ImageUploadMainStateInterface = {
   pictureFiles: [],
-  pictureDataURLs: []
+  pictureDataURLs: [],
+  data: [["", "", 0]],
+  requesting: false,
+  ImageCollectionOnChange: ImageCollectionOnChange,
+  ImageOnSendToServer: ImageOnSendToServer,
+  dispatch: useDispatch
 };
 
-const ImageUploadApiResponseInitialState: ImageUploadApiResponseStateInterface = {
-  //      filename, label, percentage
-  data: [["", "", 0]]
-};
-export {
-  ImageUploadCollectionInitialState,
-  ImageUploadApiResponseInitialState
-};
+export default ImageUploadInitialState;

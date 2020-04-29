@@ -2,11 +2,11 @@ import {
   LOGIN,
   LOGOUT,
   AccountActionTypes
-} from "_interface/action_reducer/Account/AccountActionTypesInterface";
+} from "_interface/ActionReducer/Account/AccountActionTypesInterface";
 import AccountInitialState from "./InitialState/AccountInitialState";
-import { AccountStateInterface } from "_interface/action_reducer/Account/AccountStateInterface";
+import { AccountStateInterface } from "_interface/State/AccountStateInterface";
 
-export const AccountReducer = (
+const AccountReducer = (
   state = AccountInitialState,
   action: AccountActionTypes
 ): AccountStateInterface => {
@@ -31,3 +31,5 @@ export const AccountReducer = (
       return state;
   }
 };
+
+export default AccountReducer;

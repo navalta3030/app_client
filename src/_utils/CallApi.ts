@@ -1,8 +1,6 @@
 import axios from "axios";
 
 import { getJWT } from "_utils/JwtHandler";
-import { UserAlertManualDispatch } from "action/AlertAction";
-import { store } from "app";
 
 /**
  * Description - @GetApi helper
@@ -43,7 +41,7 @@ const callApiPost = (
       return res.data;
     })
     .catch(err => {
-      store.dispatch(UserAlertManualDispatch(err));
+      console.log(err);
     });
 };
 
@@ -67,12 +65,10 @@ const callApiPostFormData = (
   return axios
     .post(endpoint, formData, { headers })
     .then(res => {
-      console.log(res);
       return res.data;
     })
     .catch(err => {
       console.log(err);
-      store.dispatch(UserAlertManualDispatch(err));
     });
 };
 

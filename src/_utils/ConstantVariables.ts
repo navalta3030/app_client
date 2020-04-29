@@ -6,9 +6,18 @@ const GOOGLE_CLIENT_ID =
 const LOCAL_STORAGE_AUTH_NAME = "jwt";
 const ALLOWED_IMAGE_EXTENSIONS = [".jpg", ".gif", ".png", ".gif"];
 
+// Tables
+const IMAGE_UPLOAD_API_RESPONSE_COLUMNS_TABLE = [
+  "#",
+  "File Name",
+  "Disease",
+  "Accuracy"
+];
+
 export {
   API_SERVER,
   GOOGLE_CLIENT_ID,
   LOCAL_STORAGE_AUTH_NAME,
-  ALLOWED_IMAGE_EXTENSIONS
+  ALLOWED_IMAGE_EXTENSIONS,
+  IMAGE_UPLOAD_API_RESPONSE_COLUMNS_TABLE
 };

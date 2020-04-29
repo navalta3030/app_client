@@ -1,13 +1,14 @@
 import * as React from "react";
 
 // custom imports
-import BannerComponent from "component/TopBannerComponent";
+import BannerComponent from "component/Banner/TopBannerComponent";
+import BannerInitialState from "reducers/InitialState/BannerInitialState";
 
 export default class ViewsHomeIndex extends React.Component {
   render(): React.ReactElement {
     return (
       <div>
-        <BannerComponent title="index"></BannerComponent>
+        <BannerComponent {...BannerInitialState}></BannerComponent>
       </div>
     );
   }

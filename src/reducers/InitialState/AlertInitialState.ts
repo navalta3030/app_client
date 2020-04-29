@@ -1,8 +1,10 @@
-import { AlertStateInterface } from "_interface/action_reducer/Alert/AlertStateInterface";
+import { AlertStateInterface } from "_interface/State/AlertStateInterface";
+import { UserAlert } from "action/AlertAction";
 
 const AlertInitialState: AlertStateInterface = {
-  message: "",
-  isOpen: false
+  message: "asd",
+  isOpen: false,
+  UserAlert: UserAlert
 };
 
 export default AlertInitialState;
