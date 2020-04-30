@@ -4,7 +4,7 @@ const GOOGLE_CLIENT_ID =
   process.env.GOOGLE_CLIENT_ID ||
   "866451246367-25unilrhdui0pi1s9clnba697e9c89ud.apps.googleusercontent.com";
 const LOCAL_STORAGE_AUTH_NAME = "jwt";
-const ALLOWED_IMAGE_EXTENSIONS = [".jpg", ".gif", ".png", ".gif"];
+const ALLOWED_IMAGE_EXTENSIONS = [".jpg", ".gif", ".png", ".gif", ".jpeg"];
 
 // Tables
 const IMAGE_UPLOAD_API_RESPONSE_COLUMNS_TABLE = [
