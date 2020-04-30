@@ -1,5 +1,5 @@
 react_client_name: react-client
 server_url: xray.marknavalta.com
-replicas: "1"
+replicas: "20"
 version: "v1"
 google_client_id: "866451246367-25unilrhdui0pi1s9clnba697e9c89ud.apps.googleusercontent.com"
