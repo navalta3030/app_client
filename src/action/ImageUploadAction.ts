@@ -75,7 +75,7 @@ export const ImageOnSendToServer = (pictureFiles: File[]) => (
   dispatch(ImageOnRequesting(true));
 
   const ImagePredictionResponse: Promise<ImageUploadApiResponsePayloadInterface> = callApiPostFormData(
-    "/api/predictImage",
+    "/api/upload",
     pictureFiles,
     true
   );
