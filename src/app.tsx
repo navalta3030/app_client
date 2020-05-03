@@ -11,7 +11,6 @@ import { AccountActionTypes } from "_interface/ActionReducer/Account/AccountActi
 import { rootReducer } from "ReduxStore";
 import { ImageUploadActionTypes } from "_interface/ActionReducer/ImageUpload/ImageUploadActionTypesInterface";
 import { AlertActionTypes } from "_interface/ActionReducer/Alert/AlertActionTypesInterface";
-import { getNameJWT, getEmailJWT } from "_utils/JwtHandler";
 
 const store = createStore(
   rootReducer,
@@ -21,13 +20,6 @@ const store = createStore(
     >
   ) // ajax handling
 );
-
-const user = {
-  name: getNameJWT(),
-  email: getEmailJWT()
-};
-
-console.log(JSON.stringify(user));
 
 class App extends React.Component {
   render(): React.ReactElement {
