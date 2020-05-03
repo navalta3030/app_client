@@ -16,7 +16,7 @@ const LogInDev = (dispatch: any): void => {
       isAuthenticated: true
     })
   );
-  History.push("/");
+  History.push("/upload");
 };
 
 export default LogInDev;

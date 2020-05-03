@@ -15,8 +15,8 @@ import routes from "layouts/routes/HomeRoutes";
 import routeInterface from "_interface/RoutesInterface";
 import AlertComponent from "component/Alert/AlertComponent";
 import AlertInitialState from "reducers/InitialState/AlertInitialState";
-
-const LOGIN_LINK = "/login";
+import HomeLoginComponent from "component/Login/HomeLoginComponent";
+import AccountInitialState from "reducers/InitialState/AccountInitialState";
 
 class HomeLayout extends React.Component {
   getRoutes = (routes: routeInterface[]): any => {
@@ -29,7 +29,7 @@ class HomeLayout extends React.Component {
     return routes.map((prop, key) => {
       return (
         <NavItem key={key}>
-          <NavLink tag={Link} to={prop.path}>
+          <NavLink className="text-white" tag={Link} to={prop.path}>
             {prop.name}
           </NavLink>
         </NavItem>
@@ -41,17 +41,17 @@ class HomeLayout extends React.Component {
     return (
       <>
         <div className="layout_home">
-          <Navbar color="light" light expand="md">
-            <NavbarBrand tag={Link} to="/">
-              XR-S
+          <Navbar color="dark" light expand="md">
+            <NavbarBrand className="text-white" tag={Link} to="/">
+              XR-S Beta!
             </NavbarBrand>
 
             <Nav className="mr-auto" navbar>
               {this.getNavLinks(routes)}
             </Nav>
 
-            <NavLink tag={Link} to={LOGIN_LINK}>
-              Log In
+            <NavLink tag={Link} to="/">
+              <HomeLoginComponent {...AccountInitialState} />
             </NavLink>
           </Navbar>
         </div>

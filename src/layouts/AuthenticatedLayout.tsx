@@ -20,6 +20,7 @@ import AlertComponent from "component/Alert/AlertComponent";
 import AlertInitialState from "reducers/InitialState/AlertInitialState";
 import { GoogleLogout } from "react-google-login";
 import { GOOGLE_CLIENT_ID } from "_utils/ConstantVariables";
+import History from "_utils/History";
 
 class AuthenticatedLayout extends React.Component<
   AuthenticatedLayoutInterface
@@ -34,7 +35,7 @@ class AuthenticatedLayout extends React.Component<
     return routes.map((prop, key) => {
       return (
         <NavItem key={key}>
-          <NavLink tag={Link} to={prop.path}>
+          <NavLink className="text-white" tag={Link} to={prop.path}>
             {prop.name}
           </NavLink>
         </NavItem>
@@ -44,13 +45,13 @@ class AuthenticatedLayout extends React.Component<
 
   render(): React.ReactElement {
     const UserLogout = this.props.UserLogOut;
-
+    History.push("/upload"); // Push to upload right away
     return (
       <>
         <div className="layout_authenticated">
-          <Navbar color="light" light expand="md">
-            <NavbarBrand tag={Link} to="/">
-              XR-S
+          <Navbar color="dark" light expand="md">
+            <NavbarBrand className="text-white" tag={Link} to="/upload">
+              XR-S Beta!
             </NavbarBrand>
 
             <Nav className="mr-auto" navbar>

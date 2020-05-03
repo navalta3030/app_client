@@ -76,7 +76,7 @@ export const UserLogin = (responseFromGoogle: any) => (dispatch: any): any => {
             })
           );
 
-          History.push("/");
+          History.push("/upload");
         }
       })
       .catch(err => {

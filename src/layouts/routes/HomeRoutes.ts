@@ -1,6 +1,7 @@
 import HomeIndex from "layouts/views/home/ViewsHomeIndex";
-import HighChart from "layouts/views/home/ViewsHomeHighCharts";
-import Login from "layouts/views/home/ViewsHomeLogin";
+import HomeCovid from "layouts/views/home/ViewsHomeCovid";
+import HomeAbout from "layouts/views/home/ViewsHomeAbout";
+// import HighChart from "layouts/views/home/ViewsHomeHighCharts";
 
 // import interface
 import RoutesInterface from "_interface/RoutesInterface";
@@ -12,15 +13,20 @@ const routes: RoutesInterface[] = [
     view: HomeIndex
   },
   {
-    path: "/highchart",
-    name: "HighChart",
-    view: HighChart
+    path: "/covid",
+    name: "Covid-19",
+    view: HomeCovid
   },
   {
-    path: "/login",
-    name: "",
-    view: Login
+    path: "/about",
+    name: "About",
+    view: HomeAbout
   }
+  // {
+  //   path: "/highchart",
+  //   name: "HighChart",
+  //   view: HighChart
+  // }
 ];
 
 export default routes;
