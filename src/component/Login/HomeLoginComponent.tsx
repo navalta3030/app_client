@@ -22,6 +22,7 @@ const HomeLoginComponent: React.FC<AccountStateInterface> = ({
       isSignedIn={true}
       onFailure={(): any => UserAlert("Failed to login using google account")}
       className="GoogleLoginStyle"
+      onAutoLoadFinished={(successLogin): any => console.log(successLogin)}
     />
   );
 };

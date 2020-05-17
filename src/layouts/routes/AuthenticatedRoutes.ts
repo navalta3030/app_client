@@ -5,6 +5,7 @@ import RoutesInterface from "_interface/RoutesInterface";
 import ViewsAuthenticatedImageUpload from "layouts/views/authenticated/ViewsAuthenticatedImageUpload";
 import ViewsAuthenticatedCovid from "layouts/views/authenticated/ViewsAuthenticatedCovid";
 import ViewsAuthenticatedAbout from "layouts/views/authenticated/ViewsAuthenticatedAbout";
+import ViewsAuthenticatedRecord from "layouts/views/authenticated/ViewsAuthenticatedImageRecords";
 
 const routes: RoutesInterface[] = [
   // {
@@ -16,6 +17,11 @@ const routes: RoutesInterface[] = [
     path: "/upload",
     name: "upload",
     view: ViewsAuthenticatedImageUpload
+  },
+  {
+    path: "/records",
+    name: "records",
+    view: ViewsAuthenticatedRecord
   },
   {
     path: "/covid",

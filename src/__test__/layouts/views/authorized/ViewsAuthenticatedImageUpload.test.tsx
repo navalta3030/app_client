@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from "react";
 import ReactDom from "react-dom";
 import ViewsAuthenticatedImageUpload from "layouts/views/authenticated/ViewsAuthenticatedImageUpload";

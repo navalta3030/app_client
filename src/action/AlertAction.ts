@@ -1,25 +1,13 @@
 import { AlertPayloadInterface } from "_interface/ActionReducer/Alert/AlertPayloadInterface";
 import {
-  AlertActionInterface,
+  AlertActionTypes,
   ALERT
 } from "_interface/ActionReducer/Alert/AlertActionTypesInterface";
 
-export const Alert = (
-  payload: AlertPayloadInterface
-): AlertActionInterface => ({
+export const Alert = (payload: AlertPayloadInterface): AlertActionTypes => ({
   type: ALERT,
   payload: payload
 });
-
-export const UserAlertManualDispatch = (
-  message: string,
-  isOpen = true
-): AlertActionInterface => {
-  return {
-    type: ALERT,
-    payload: { message, isOpen }
-  };
-};
 
 /**
  * User @UserAlert

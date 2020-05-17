@@ -5,13 +5,13 @@ import { getJWT, getNameJWT, getEmailJWT } from "_utils/JwtHandler";
 /**
  * Description - @GetApi helper
  */
-const callApiGet = (endpoint: string, secured: boolean): Promise<any> => {
+const callApiGet = async (endpoint: string, secured: boolean): Promise<any> => {
   const headers = {};
 
   if (secured) {
     headers["Authorization"] = "Bearer " + getJWT();
   }
-  return axios
+  return await axios
     .get(endpoint, { headers })
     .then(res => {
       return res.data;
@@ -24,7 +24,7 @@ const callApiGet = (endpoint: string, secured: boolean): Promise<any> => {
 /**
  * Description - @PostApi helper
  */
-const callApiPost = (
+const callApiPost = async (
   endpoint: string,
   data: any,
   secured: boolean
@@ -35,7 +35,7 @@ const callApiPost = (
     headers["Authorization"] = "Bearer " + getJWT();
   }
 
-  return axios
+  return await axios
     .post(endpoint, data, { headers })
     .then(res => {
       return res.data;
@@ -48,7 +48,7 @@ const callApiPost = (
 /**
  * Description - @PostApiForm helper for sending images/blobs and any form of files
  */
-const callApiPostFormData = (
+const callApiPostFormData = async (
   endpoint: string,
   data: File[],
   secured: boolean
@@ -69,7 +69,7 @@ const callApiPostFormData = (
     email: getEmailJWT()
   };
   formData.append("meta_data", JSON.stringify(user));
-  return axios
+  return await axios
     .post(endpoint, formData, { headers })
     .then(res => {
       return res.data;
